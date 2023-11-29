@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['id_user'])){
+  header('location: ../admin/login.php'); 
+}else if($_SESSION['roleUser']==0){
+  header('location: ../user/index.php'); 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -254,7 +262,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="scripte.php?log_out=ok">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>

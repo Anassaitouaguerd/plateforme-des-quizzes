@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']==1){
+  header('location: ../admin/index.php'); 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,19 +45,31 @@
         <div class="col-12">
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
+            <a href="index.php" class="logo">
               <img src="assets/images/logo-v3.png" alt="">
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li class="scroll-to-section"><a href="index.html" class="active">Accueil</a></li>
-              <li class="scroll-to-section"><a href="index.html">suivre à l'avance</a></li>
-              <li class="scroll-to-section"><a href="index.html">Services</a></li>
+              <li class="scroll-to-section"><a href="index.php" class="active">Accueil</a></li>
+              <li class="scroll-to-section"><a href="index.php">suivre à l'avance</a></li>
+              <li class="scroll-to-section"><a href="index.php">Services</a></li>
+              <?php 
+              if(isset($_SESSION['id_user'])){
+              ?>
               <li class="scroll-to-section"><a href="cours.htm">Cours</a></li>
-              <li class="scroll-to-section"><a href="quizze.html">Quizzes</a></li>
-              <li class="scroll-to-section"><a href="index.html">Contact</a></li> 
-              <li class="scroll-to-section"><div class="border-first-button"><a href="../NiceAdmin/login.html">Connexion</a></div></li> 
+              <li class="scroll-to-section"><a href="quizze.php">Quizzes</a></li>
+              <?php } ?>
+              <li class="scroll-to-section"><a href="index.php">Contact</a></li> 
+              <?php 
+              if(isset($_SESSION['id_user'])){
+              ?>
+              <li class="scroll-to-section"><div class="border-first-button"><a href="../admin/scripte.php?log_out=ok">Deconexion</a></div></li> 
+              <?php } else{
+                ?>
+              <li class="scroll-to-section"><div class="border-first-button"><a href="../admin/login.php">Connexion</a></div></li> 
+                <?php
+              } ?>
             </ul>        
             <a class='menu-trigger'>
                 <span>Menu</span>
