@@ -1,3 +1,6 @@
+<?php
+require "../connection.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,27 +52,27 @@
                             <li class="scroll-to-section"><a href="index.php" class="active">Accueil</a></li>
                             <li class="scroll-to-section"><a href="index.php">suivre à l'avance</a></li>
                             <li class="scroll-to-section"><a href="index.php">Services</a></li>
-                            <?php/* 
+                            <?php
               if(isset($_SESSION['id_user'])){
-              */?>
+              ?>
                             <li class="scroll-to-section"><a href="cours.php">Cours</a></li>
                             <li class="scroll-to-section"><a href="quizze.php">Quizzes</a></li>
-                            <?php // } ?>
+                            <?php } ?>
                             <li class="scroll-to-section"><a href="index.php">Contact</a></li>
-                            <?php /*
+                            <?php 
               if(isset($_SESSION['id_user'])){
-              */?>
+              ?>
                             <li class="scroll-to-section">
                                 <div class="border-first-button"><a
                                         href="../admin/scripte.php?log_out=ok">Deconexion</a></div>
                             </li>
-                            <?php // } else{
+                            <?php } else{
                 ?>
                             <li class="scroll-to-section">
                                 <div class="border-first-button"><a href="../admin/login.php">Connexion</a></div>
                             </li>
                             <?php
-              // } ?>
+              } ?>
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -83,38 +86,20 @@
     <!-- ***** Header Area End ***** -->
     <section>
         <?php  
-          require "connection.php";
+          
           $SQL_AFFICHER_COURSE = "SELECT * FROM course";
           $result_afficher_course = mysqli_query($conn,$SQL_AFFICHER_COURSE);
-          if($result_afficher_course->num_rows > 0){
+          
             foreach($result_afficher_course as $rows){
-           $id_course = $rows['courseID'];
-          ?>
-        <div id="contact<?php echo $id_course?>" class="contact-us section row">
+                
+         ?>
+        <div id="contact<?php echo $rows['courseID'] ;?>" class="contact-us section row">
             <div class="container col-lg-5 mt-5">
                 <div class="cours">
-                    <div class="cours_header"><?php $rows['courseName']?></div>
+                    <div class="cours_header"><?php echo $rows['courseName'] ?> </div>
                     <div class="cours_body"></div>
-                    <div class="cours_footer"><a href="cours_detail.html">Commencer Cours</a></div>
-                </div>
-            </div>
-        </div>
-
-        </div>
-        <?php
-        }
-      }
-      else{
-        
-      
-
-        ?>
-        <div id="contact<?php echo $id_course?>" class="contact-us section row">
-            <div class="container col-lg-5 mt-5">
-                <div class="cours">
-                    <div class="cours_header">not course</div>
-                    <div class="cours_body"></div>
-                    <div class="cours_footer"><a href="cours_detail.html">Commencer Cours</a></div>
+                    <div class="cours_footer"><a
+                            href="cours_detail.php?id_course=<?php echo $rows['courseID'];?>">Commencer Cours</a></div>
                 </div>
             </div>
         </div>
@@ -123,6 +108,10 @@
         <?php
         }
         ?>
+
+
+
+
     </section>
 
 
