@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']==1){
+if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']=="admin"){
   header('location: ../admin/index.php'); 
 }
 ?>
