@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION['id_user'])){
   header('location: ../admin/login.php'); 
-}else if($_SESSION['roleUser']==0){
+}else if($_SESSION['roleUser']=="etudiants"){
   header('location: ../user/index.php'); 
 }
 ?>
