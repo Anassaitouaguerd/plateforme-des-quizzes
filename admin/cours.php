@@ -276,25 +276,25 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="index.html">
+                <a class="nav-link collapsed" href="index.php">
                     <i class="bi bi-grid"></i>
                     <span>Statistiques </span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="cours.html">
+                <a class="nav-link " href="cours.php">
                     <i class="bi bi-grid"></i>
                     <span>Gestion des Cours</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="QuesRepo.html">
+                <a class="nav-link collapsed" href="QuesRepo.php">
                     <i class="bi bi-grid"></i>
                     <span>Questions & Réponses </span>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link collapsed" href="utlisateurs.html">
+                <a class="nav-link collapsed" href="utlisateurs.php">
                     <i class="bi bi-grid"></i>
                     <span>Gestion des Utilisateurs </span>
                 </a>
@@ -309,7 +309,7 @@
             <h1>Accueil</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                    <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
                     <li class="breadcrumb-item active">Gestion Cours</li>
                 </ol>
             </nav>

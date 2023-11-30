@@ -8,7 +8,7 @@ if(isset($_POST['register_submit'])){
         header('location: register.php');
     }else{
         $pass_hash=MD5($password);
-        $sql_insert = "INSERT INTO users SET username='$name', role='etudiants', passwordHash='$pass_hash', email='$email'";
+        $sql_insert = "INSERT INTO users SET username='$name', email='$email' , passwordHash='$pass_hash' , `role`='etudiants'";
         $res=$conn->query($sql_insert);
         if($res){
             header('location: login.php'); 
@@ -28,15 +28,9 @@ if(isset($_POST["login_submit"])){
         if($user['role']=="etudiants"){
             header('location:../user/index.php'); 
         }
-<<<<<<< Updated upstream
         if($user['role']=="admin"){
             header('location: index.php'); 
         } 
-=======
-        if($_SESSION['roleUser']==1){
-            header('location: index.php');
-        }
->>>>>>> Stashed changes
 
     }
 }
