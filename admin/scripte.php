@@ -28,9 +28,15 @@ if(isset($_POST["login_submit"])){
         if($user['role']=="etudiants"){
             header('location:../user/index.php'); 
         }
+<<<<<<< Updated upstream
         if($user['role']=="admin"){
             header('location: index.php'); 
         } 
+=======
+        if($_SESSION['roleUser']==1){
+            header('location: index.php');
+        }
+>>>>>>> Stashed changes
 
     }
 }
