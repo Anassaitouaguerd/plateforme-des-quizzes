@@ -34,7 +34,7 @@ $id_quize= $cour['quizID'];
 </head>
 
 <body>
-  <!-- <div id="js-preloader" class="js-preloader">
+  <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
       <span class="dot"></span>
       <div class="dots">
@@ -43,7 +43,7 @@ $id_quize= $cour['quizID'];
         <span></span>
       </div>
     </div>
-  </div> -->
+  </div>
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
     <div class="container">
@@ -88,51 +88,53 @@ $id_quize= $cour['quizID'];
   </header>
   <!-- ***** Header Area End ***** -->
   <section>
-     <form  method="post" action='scripte_pass_quiz.php'>     
-    <div id="contact" class="contact-us section" >
-        <div class="image" style="width: 100%; height: 200px; overflow: hidden; ">
-           <img src="assets/images/blog-post-01.jpg"  alt=""> 
-        </div>
-        <?php 
-        $select_question = "SELECT * FROM question WHERE quizID = $id_quize";
-        $questions=$conn->query($select_question);
-        $i=1;
-        $reponse_id=1;
-        while($question=$questions->fetch_assoc()){
-          $quistion_id=$question['questionID'];
-        ?>
-        <div class="container mt-5">
-            <div class="container mt-4 d-flex justify-content-center rounded-1" style="background: #007bff; color: white;">
-                <h1 class="font-weight-bold" >Question<?=$i++?></h1>
-            </div>
-            <div class="courses pt-4 bg-light font-weight-bold" style="font-size: 20px;">
-              <?=$question["questionText"]?>
-            </div>
-            <div class="container mt-4">
-                <div class="chois row">
-                    <?php 
-                    $select_answer="SELECT * FROM quiz NATURAL JOIN question NATURAL JOIN answer WHERE answer.questionID = $quistion_id";
-                    echo "<input type='hidden' name='question_".$reponse_id."_id' value='".$quistion_id."'>";
-                    $answers=$conn->query($select_answer);
-                    $j=1;
-                    $reponse_id_value=0;
-                    if($answers)
-                    while($answer=$answers->fetch_assoc()){
-                    ?>
-                    <div class="reponse mt-4 col-lg-6 p-3 shadow">
-                        <label for="reponse1" class="p-2" style="font-weight: bold; font-size: x-large;">Réponse <?=$j++?> :</label> <br>
-                        <input type="radio" name="reponse<?=$reponse_id?>" id="reponse1" value='<?=$answer["answerID"]?>' class="form-check-input">
-                        <span class="ml-2"><?=$answer["answerText"]?></span>
-                    </div>
-                   <?php }
-                   $reponse_id++; ?>
-                </div>
-            </div>
-        </div>
-        <?php } ?>
+    <form  method="post" action='scripte_pass_quiz.php'>     
+      <div id="contact" class="contact-us section" >
+          <div class="image" style="width: 100%; height: 200px; overflow: hidden; ">
+            <img src="assets/images/blog-post-01.jpg"  alt=""> 
+          </div>
+          <?php 
+          $select_question = "SELECT * FROM question WHERE quizID = $id_quize";
+          $questions=$conn->query($select_question);
+          $i=1;
+          $reponse_id=1;
+          while($question=$questions->fetch_assoc()){
+            $quistion_id=$question['questionID'];
+          ?>
+          <div class="container mt-5">
+              <div class="container mt-4 d-flex justify-content-center rounded-1" style="background: #007bff; color: white;">
+                  <h1 class="font-weight-bold" >Question<?=$i++?></h1>
+              </div>
+              <div class="courses pt-4 bg-light font-weight-bold" style="font-size: 20px;">
+                <?=$question["questionText"]?>
+              </div>
+              <div class="container mt-4">
+                  <div class="chois row">
+                      <?php 
+                      $select_answer="SELECT * FROM quiz NATURAL JOIN question NATURAL JOIN answer WHERE answer.questionID = $quistion_id";
+                      echo "<input type='hidden' name='question_".$reponse_id."_id' value='".$quistion_id."'>";
+                      $answers=$conn->query($select_answer);
+                      $j=1;
+                      $reponse_id_value=0;
+                      if($answers)
+                      while($answer=$answers->fetch_assoc()){
+                      ?>
+                      <div class="reponse mt-4 col-lg-6 p-3 shadow">
+                          <label for="reponse1" class="p-2" style="font-weight: bold; font-size: x-large;">Réponse <?=$j++?> :</label> <br>
+                          <input type="radio" name="reponse<?=$reponse_id?>" required id="reponse1" value='<?=$answer["answerID"]?>' class="form-check-input">
+                          <span class="ml-2"><?=$answer["answerText"]?></span>
+                      </div>
+                    <?php }
+                    $reponse_id++; ?>
+                  </div>
+              </div>
+          </div>
+          <?php } ?>
+      </div>
+      <div class="p-5 mt-2" style='width:100%; text-align:center; '>
+        <button type="submit" class="btn btn-success">Success</button>
+      </div>
       
-    </div>
-    <button type='submit'>Valid</button>
     </form>    
   </section>
 

@@ -9,8 +9,5 @@ for($i=1;$i<=count($_POST)/2;$i++){
     while($answer=$answers->fetch_assoc()){
         if($answer['answerID']==$reponse && $answer['IsCorrect']==1) $scor++;
     }
-    // echo "$quistion_id <br>".$reponse."<br><br>";
-    // $vrai_reponse=0;
-    // $k=0;
 }
 echo $scor;
