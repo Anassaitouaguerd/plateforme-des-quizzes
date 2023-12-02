@@ -1,3 +1,5 @@
+<?php
+require '../connection.php';?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -314,47 +316,21 @@
     </div>
     <section class="section dashboard">
 <!--Content  ------------------------------------------------>
+    <?php
+    $querycous = "SELECT * FROM course";
+    $querycousconn = mysqli_query($conn, $querycous);
+    while($row = mysqli_fetch_array($querycousconn)){
+    ?>
     <div class="allCours d-flex gap-5" style="flex-wrap: wrap;">
       <div class="card " style="max-width: 45%; min-width: 45%;">
-          <div class="card-header">Header</div>
+          <div class="card-header">cours</div>
           <div class="card-body">
-              <h5 class="card-title">Card with header and footer</h5>
-              Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-              Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-              Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
+              <h5 class="card-title"><?php echo $row['courseName'] ?></h5>
+              <?php echo $row['courseDescription']; ?>
           </div>
-          <a href="QuesRepo_detail.html" class="btn btn-success">Gestion des Questions & Réponses</a>
+          <a href="QuesRepo_detail.php?idcours=<?php echo $row['courseID'] ?>" class="btn btn-success">Gestion des Questions & Réponses</a>
       </div>
-      <div class="card " style="max-width: 45%; min-width: 45%;">
-          <div class="card-header">Header</div>
-          <div class="card-body">
-              <h5 class="card-title">Card with header and footer</h5>
-              Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-              Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-              Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
-          </div>
-          <a href="#" class="btn btn-success">Gestion des Questions & Réponses</a>
-      </div>
-      <div class="card " style="max-width: 45%; min-width: 45%;">
-          <div class="card-header">Header</div>
-          <div class="card-body">
-              <h5 class="card-title">Card with header and footer</h5>
-              Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-              Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-              Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
-          </div>
-          <a href="#" class="btn btn-success">Gestion des Questions & Réponses</a>
-      </div>
-      <div class="card " style="max-width: 45%; min-width: 45%;">
-          <div class="card-header">Header</div>
-          <div class="card-body">
-              <h5 class="card-title">Card with header and footer</h5>
-              Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-              Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-              Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
-          </div>
-          <a href="#" class="btn btn-success">Gestion des Questions & Réponses</a>
-      </div>
+     <?php }?>
     </div>
 
     </section>
