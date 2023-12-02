@@ -1,3 +1,9 @@
+<?php
+require_once "../connection.php";
+if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']=="admin"){
+  header('location: ../admin/index.php'); 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,14 +51,14 @@
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li class="scroll-to-section"><a href="index.php" class="active">Accueil</a></li>
+              <li class="scroll-to-section"><a href="index.php">Accueil</a></li>
               <li class="scroll-to-section"><a href="index.php">suivre à l'avance</a></li>
               <li class="scroll-to-section"><a href="index.php">Services</a></li>
               <?php 
               if(isset($_SESSION['id_user'])){
               ?>
-              <li class="scroll-to-section"><a href="cours.htm">Cours</a></li>
-              <li class="scroll-to-section"><a href="quizze.php">Quizzes</a></li>
+              <li class="scroll-to-section"><a href="cours.php">Cours</a></li>
+              <li class="scroll-to-section"><a href="quizze.php" class="active">Quizzes</a></li>
               <?php } ?>
               <li class="scroll-to-section"><a href="index.php">Contact</a></li> 
               <?php 
@@ -74,41 +80,32 @@
       </div>
     </div>
   </header>
-  <!-- ***** Header Area End ***** -->
   <section>
     
     <div id="contact" class="contact-us section row" >
+      <?php
+      $select_cours = "SELECT * FROM course";
+      $cours=$conn->query($select_cours);
+      while($cour=$cours->fetch_assoc()){
+      $id_cours=$cour["courseID"];
+      ?>
       <div class="container col-lg-5 mt-5">
         <div class="cours">
-          <div class="cours_header">Cours 1</div>
-          <div class="cours_body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi rerum assumenda laboriosam maiores. Dolor, facere, placeat, voluptatem rerum adipisci ducimus quisquam dicta eius impedit iusto temporibus ab esse error odio!</div>
-          <div class="cours_footer"><a href="quizze_details.html">Commencer Quizze</a></div>
+          <div class="cours_header"><?=$cour["courseName"]?></div>
+          <div class="cours_body coursse" style='height:160px; overflow: scroll;'><?=$cour["courseDescription"]?></div>
+          <div class="cours_footer"><a href="quizze_details.php?id_cours=<?=$id_cours?>">Commencer Quizze</a></div>
         </div>
       </div>
-      <div class="container col-lg-5 mt-5">
-        <div class="cours">
-          <div class="cours_header">Cours 1</div>
-          <div class="cours_body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi rerum assumenda laboriosam maiores. Dolor, facere, placeat, voluptatem rerum adipisci ducimus quisquam dicta eius impedit iusto temporibus ab esse error odio!</div>
-          <div class="cours_footer"><a href="#">Commencer Quizze</a></div>
-        </div>
-      </div>
-      <div class="container col-lg-5 mt-5">
-        <div class="cours">
-          <div class="cours_header">Cours 1</div>
-          <div class="cours_body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi rerum assumenda laboriosam maiores. Dolor, facere, placeat, voluptatem rerum adipisci ducimus quisquam dicta eius impedit iusto temporibus ab esse error odio!</div>
-          <div class="cours_footer"><a href="#">Commencer Quizze</a></div>
-        </div>
-      </div>
-      <div class="container col-lg-5 mt-5">
-        <div class="cours">
-          <div class="cours_header">Cours 1</div>
-          <div class="cours_body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi rerum assumenda laboriosam maiores. Dolor, facere, placeat, voluptatem rerum adipisci ducimus quisquam dicta eius impedit iusto temporibus ab esse error odio!</div>
-          <div class="cours_footer"><a href="#">Commencer Quizze</a></div>
-        </div>
-      </div>
+      <?php
+      }
+      ?>
     </div>
   </section>
-
+  <style>
+    .coursse::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
 
   <!-- Scripts -->
   <script src="vendor/jquery/jquery.min.js"></script>
