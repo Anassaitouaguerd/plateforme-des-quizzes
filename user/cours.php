@@ -49,13 +49,13 @@ require "../connection.php";
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="index.php" class="active">Accueil</a></li>
+                            <li class="scroll-to-section"><a href="index.php">Accueil</a></li>
                             <li class="scroll-to-section"><a href="index.php">suivre à l'avance</a></li>
                             <li class="scroll-to-section"><a href="index.php">Services</a></li>
                             <?php
               if(isset($_SESSION['id_user'])){
               ?>
-                            <li class="scroll-to-section"><a href="cours.php">Cours</a></li>
+                            <li class="scroll-to-section"><a href="cours.php" class="active">Cours</a></li>
                             <li class="scroll-to-section"><a href="quizze.php">Quizzes</a></li>
                             <?php } ?>
                             <li class="scroll-to-section"><a href="index.php">Contact</a></li>
@@ -85,6 +85,26 @@ require "../connection.php";
     </header>
     <!-- ***** Header Area End ***** -->
     <section>
+        <form action="Search_course.php" method="POST">
+            <div class="container">
+                <div class="row height d-flex justify-content-center align-items-center">
+                    <div class="col-md-6">
+                        <div class="form d-flex  ">
+                            <i class="fa fa-search"></i>
+                            <input type="text" name="searching" class="form-control form-input search_course"
+                                placeholder="Search anything...">
+                            <button class="left-pan bt_searche" type="submit" name="searche_course">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
         <?php  
           
           $SQL_AFFICHER_COURSE = "SELECT * FROM course";
@@ -93,7 +113,7 @@ require "../connection.php";
             foreach($result_afficher_course as $rows){
                 
          ?>
-        <div id="contact<?php echo $rows['courseID'] ;?>" class="contact-us section row">
+        <div id="contact<?php echo $rows['courseID'] ;?>" class="section row">
             <div class="container col-lg-5 mt-5">
                 <div class="cours">
                     <div class="cours_header"><?php echo $rows['courseName'] ?> </div>
@@ -108,13 +128,7 @@ require "../connection.php";
         <?php
         }
         ?>
-
-
-
-
     </section>
-
-
     <!-- Scripts -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -151,6 +165,67 @@ require "../connection.php";
         color: #007bff;
         text-decoration: none;
         font-weight: bold;
+    }
+
+    .height {
+        height: 37vh;
+    }
+
+    .bt_searche {
+        height: 54px;
+        border-radius: 10px;
+        width: 55px;
+        background: none;
+        border: 1px solid #C8C8C8;
+        border-left: none;
+    }
+
+    .form {
+
+
+        position: relative;
+    }
+
+    .form .fa-search {
+
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: #9ca3af;
+
+    }
+
+    .form span {
+
+        position: absolute;
+        right: 17px;
+        top: 13px;
+        padding: 2px;
+        border-left: 1px solid #d1d5db;
+
+    }
+
+    .left-pan {
+        padding-left: 7px;
+    }
+
+    .left-pan i {
+
+        padding-left: 10px;
+    }
+
+    .form-input {
+
+        height: 55px;
+        text-indent: 33px;
+        border-radius: 10px;
+    }
+
+
+    .search_course:focus {
+
+        box-shadow: none;
+
     }
     </style>
 </body>

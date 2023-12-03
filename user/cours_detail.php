@@ -49,13 +49,13 @@ require "../connection.php";
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="index.php" class="active">Accueil</a></li>
+                            <li class="scroll-to-section"><a href="index.php">Accueil</a></li>
                             <li class="scroll-to-section"><a href="index.php">suivre à l'avance</a></li>
                             <li class="scroll-to-section"><a href="index.php">Services</a></li>
                             <?php 
               if(isset($_SESSION['id_user'])){
               ?>
-                            <li class="scroll-to-section"><a href="cours.htm">Cours</a></li>
+                            <li class="scroll-to-section"><a href="cours.php" class="active">Cours</a></li>
                             <li class="scroll-to-section"><a href="quizze.php">Quizzes</a></li>
                             <?php } ?>
                             <li class="scroll-to-section"><a href="index.php">Contact</a></li>
