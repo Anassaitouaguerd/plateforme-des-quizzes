@@ -27,6 +27,7 @@ require '../connection.php';?>
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -423,7 +424,14 @@ $row = mysqli_fetch_array($querycoursconn); }
     ?>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title"><?php echo $questionText ?></h5>
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title"><?php echo $questionText ?></h5>
+                <div class="d-flex align-items-center">
+                <a href="#editQuestion" class="edit" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+      
+							    <a href="scriptQuestion.php?deleteQuestionID=<?php echo $questionID?>" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                </div>
+              </div>
             <ol class="list-group list-group-numbered">
                 <?php
                 $answerQuery = "SELECT * FROM answer WHERE questionID = $questionID";
@@ -453,6 +461,82 @@ $row = mysqli_fetch_array($querycoursconn); }
      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
     </div>
   </footer>
+  <div class="modal fade" id="editQuestion" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Vertically Centered</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Vertical Form</h5>
+            
+                          <!-- Vertical Form -->
+                          <form class="row g-3" method = "POST" action = "scriptQuestion.php">
+                            <div class="col-12">
+                              <label for="inputNanme4" class="form-label">Question</label>
+                              <input type="text" name = "question" class="form-control">
+                            </div>
+                            <div class="col-12">
+                              <label for="inputEmail4" class="form-label">Reponse 1</label>
+                              <input type = "text" name = "reponce[]" class="form-control">
+                            </div>
+                            <div class="col-12">
+                              <label for="inputPassword4" class="form-label">Reponse 2</label>
+                              <input type = "text" name = "reponce[]" class="form-control">
+                            </div>
+                            <div class="col-12">
+                              <label for="inputAddress" class="form-label">Reponse 3</label>
+                              <input type = "text" name = "reponce[]" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputAddress" class="form-label">Reponse 4</label>
+                                <input type = "text" name = "reponce[]" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputAddress" class="form-label">Reponse Vrai</label>
+                                <div class="d-flex gap-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="0" checked="">
+                                        <label class="form-check-label" for="gridRadios1">
+                                         1
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="1" checked="">
+                                        <label class="form-check-label" for="gridRadios1">
+                                         2
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="2" checked="">
+                                        <label class="form-check-label" for="gridRadios1">
+                                         1
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="3" checked="">
+                                        <label class="form-check-label" for="gridRadios1">
+                                         2
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                              
+                              <input type="hidden" name = "idquiz" value = "">
+                              <button type="submit" name = "submitquestion" class="btn btn-primary">Submit</button>
+                              <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div>
+                          </form>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+      </div>
   <!-- Vendor JS Files -->
   <div class="script">
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
