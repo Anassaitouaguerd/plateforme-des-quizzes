@@ -51,7 +51,7 @@
               <?php 
               if(isset($_SESSION['id_user'])){
               ?>
-              <li class="scroll-to-section"><a href="cours.htm">Cours</a></li>
+              <li class="scroll-to-section"><a href="cours.php">Cours</a></li>
               <li class="scroll-to-section"><a href="quizze.php">Quizzes</a></li>
               <?php } ?>
               <li class="scroll-to-section"><a href="index.php">Contact</a></li> 
@@ -82,7 +82,7 @@
         <div class="cours">
           <div class="cours_header">Cours 1</div>
           <div class="cours_body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi rerum assumenda laboriosam maiores. Dolor, facere, placeat, voluptatem rerum adipisci ducimus quisquam dicta eius impedit iusto temporibus ab esse error odio!</div>
-          <div class="cours_footer"><a href="cours_detail.html">Commencer Cours</a></div>
+          <div class="cours_footer"><a href="cours_detail.php">Commencer Cours</a></div>
         </div>
       </div>
       <div class="container col-lg-5 mt-5">
