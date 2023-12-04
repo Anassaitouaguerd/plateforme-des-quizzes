@@ -288,7 +288,7 @@ require '../connection.php';?>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="QuesRepo.html">
+        <a class="nav-link " href="QuesRepo.php">
           <i class="bi bi-grid"></i>
           <span>Questions & Réponses </span>
         </a>

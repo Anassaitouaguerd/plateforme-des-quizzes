@@ -289,7 +289,7 @@ require '../connection.php';?>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="QuesRepo.html">
+        <a class="nav-link " href="QuesRepo.php">
           <i class="bi bi-grid"></i>
           <span>Questions & Réponses </span>
         </a>
@@ -497,7 +497,7 @@ $row = mysqli_fetch_array($querycoursconn); }
     </div>
 </div>
 
-							    <a href="scriptQuestion.php?deleteQuestionID=<?php echo $questionID?>&coursid = <?php echo $idcours?>" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							    <a href="scriptQuestion.php?deleteQuestionID=<?php echo $questionID?>&coursid=<?php echo $idcours?>" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                 </div>
               </div>
             <ol class="list-group list-group-numbered">

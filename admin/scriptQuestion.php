@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submitquestion'])) {
 }elseif(isset($_GET['deleteQuestionID'])) {
     
 		$questionID = $_GET['deleteQuestionID'];
+		$idcours = $_GET['coursid'];
 		$deletAnswers = "DELETE FROM `answer` WHERE questionID = $questionID";
 		$deletQuestion = "DELETE FROM `question` WHERE questionID = $questionID";
 		mysqli_query($conn, $deletAnswers);
