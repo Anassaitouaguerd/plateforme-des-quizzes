@@ -384,13 +384,13 @@ $row = mysqli_fetch_array($querycoursconn); }
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="2" checked="">
                                         <label class="form-check-label" for="gridRadios1">
-                                         1
+                                         3
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="3" checked="">
                                         <label class="form-check-label" for="gridRadios1">
-                                         2
+                                         4
                                         </label>
                                     </div>
                                 </div>
@@ -403,6 +403,7 @@ $row = mysqli_fetch_array($querycoursconn); }
                               $idquiz = $result['quizID'];
                               ?>
                               <input type="hidden" name = "idquiz" value = "<?= $idquiz; ?>">
+                              <input type="hidden" name = "idcours" value = "<?= $idcours; ?>">
                               <button type="submit" name = "submitquestion" class="btn btn-primary">Submit</button>
                               <button type="reset" class="btn btn-secondary">Reset</button>
                             </div>
@@ -427,9 +428,76 @@ $row = mysqli_fetch_array($querycoursconn); }
             <div class="d-flex justify-content-between">
               <h5 class="card-title"><?php echo $questionText ?></h5>
                 <div class="d-flex align-items-center">
-                <a href="#editQuestion" class="edit" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-      
-							    <a href="scriptQuestion.php?deleteQuestionID=<?php echo $questionID?>" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                  <a href="#editQuestion<?php echo $questionID?>" class="edit" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                  <div class="modal fade" id="editQuestion<?php echo $questionID?>" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Vertically Centered</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Vertical Form</h5>
+
+                                        <!-- Vertical Form -->
+                                        <form class="row g-3" method="POST" action="scriptQuestion.php">
+                                            <div class="col-12">
+                                                <label for="inputNanme4" class="form-label">Question</label>
+                                                <input type="text" name="question" class="form-control" value="<?= $questionText ?>">
+                                            </div>
+                                            <?php
+                                            $answerQuery = "SELECT * FROM answer WHERE questionID = $questionID";
+                                            $answerQueryConn = mysqli_query($conn, $answerQuery);
+                                            while ($answerRow = mysqli_fetch_array($answerQueryConn)) {
+                                                $answerText = $answerRow['answerText'];
+                                                $answerid = $answerRow['answerID'];
+                                                $isCorrect = $answerRow['IsCorrect'];
+                                                ?>
+                                                <div class="col-12">
+                                                    <label for="inputEmail4" class="form-label">Reponse</label>
+                                                    <input type="text" name="reponce[]" class="form-control" value="<?= $answerText ?>">
+                                                    <input type="hidden" name="idreponce[]" class="form-control" value="<?= $answerid ?>">
+                                                </div>
+                                            <?php } ?>
+                                            <div class="col-12">
+                                                <label for="inputAddress" class="form-label">Reponse Vrai</label>
+                                                <div class="d-flex gap-3">
+                                                    <?php
+                                                    $answerQueryConn = mysqli_query($conn, $answerQuery);
+                                                    $index = 0;
+                                                    while ($answerRow = mysqli_fetch_array($answerQueryConn)) {
+                                                        $isChecked = $answerRow['IsCorrect'] ? 'checked' : '';
+                                                        ?>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="vrai" id="gridRadios<?= $index ?>" value="<?= $index ?>" <?= $isChecked ?>>
+                                                            <label class="form-check-label" for="gridRadios<?= $index ?>">
+                                                                <?= $index + 1 ?>
+                                                            </label>
+                                                        </div>
+                                                        <?php
+                                                        $index++;
+                                                    } ?>
+                                                </div>
+                                            </div>
+
+                            <div class="text-center">
+                                <input type="hidden" name="questionID" value="<?= $questionID ?>">
+                                <input type="hidden" name="idcours" value="<?= $idcours ?>">
+                                <button type="submit" name="editquestion" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+							    <a href="scriptQuestion.php?deleteQuestionID=<?php echo $questionID?>&coursid = <?php echo $idcours?>" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                 </div>
               </div>
             <ol class="list-group list-group-numbered">
@@ -461,82 +529,6 @@ $row = mysqli_fetch_array($querycoursconn); }
      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
     </div>
   </footer>
-  <div class="modal fade" id="editQuestion" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Vertically Centered</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Vertical Form</h5>
-            
-                          <!-- Vertical Form -->
-                          <form class="row g-3" method = "POST" action = "scriptQuestion.php">
-                            <div class="col-12">
-                              <label for="inputNanme4" class="form-label">Question</label>
-                              <input type="text" name = "question" class="form-control">
-                            </div>
-                            <div class="col-12">
-                              <label for="inputEmail4" class="form-label">Reponse 1</label>
-                              <input type = "text" name = "reponce[]" class="form-control">
-                            </div>
-                            <div class="col-12">
-                              <label for="inputPassword4" class="form-label">Reponse 2</label>
-                              <input type = "text" name = "reponce[]" class="form-control">
-                            </div>
-                            <div class="col-12">
-                              <label for="inputAddress" class="form-label">Reponse 3</label>
-                              <input type = "text" name = "reponce[]" class="form-control">
-                            </div>
-                            <div class="col-12">
-                                <label for="inputAddress" class="form-label">Reponse 4</label>
-                                <input type = "text" name = "reponce[]" class="form-control">
-                            </div>
-                            <div class="col-12">
-                                <label for="inputAddress" class="form-label">Reponse Vrai</label>
-                                <div class="d-flex gap-3">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="0" checked="">
-                                        <label class="form-check-label" for="gridRadios1">
-                                         1
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="1" checked="">
-                                        <label class="form-check-label" for="gridRadios1">
-                                         2
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="2" checked="">
-                                        <label class="form-check-label" for="gridRadios1">
-                                         1
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="3" checked="">
-                                        <label class="form-check-label" for="gridRadios1">
-                                         2
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                              
-                              <input type="hidden" name = "idquiz" value = "">
-                              <button type="submit" name = "submitquestion" class="btn btn-primary">Submit</button>
-                              <button type="reset" class="btn btn-secondary">Reset</button>
-                            </div>
-                          </form>
-                        </div>
-                    </div>    
-                </div>
-            </div>
-        </div>
-      </div>
   <!-- Vendor JS Files -->
   <div class="script">
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
