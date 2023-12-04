@@ -168,9 +168,7 @@ for ($i = 1; $i <= count($_POST) / 2; $i++) {
 
                         <?php } ?>
 
-                        <p class="mb-2">
-                            <strong>Your Selected Answer:</strong> <?php echo $selected_answer; ?>
-                        </p>
+                       
 
                     </div>
 
