@@ -426,7 +426,6 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h5 class="card-title">Utlisateur Information</h5>
-
                                                     <!-- Floating Labels Form -->
                                                     <form class="row g-3" method="POST" action="crud_users.php">
                                                         <div class="col-md-12">

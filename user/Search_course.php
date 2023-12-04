@@ -106,8 +106,9 @@ require "../connection.php";
             </div>
         </form>
         <?php
-if (isset($_POST['searche_course'])) {
+if (isset($_POST['searche_course']) OR isset($_POST['searche_quize'])) {
     $searching = $_POST['searching'];
+    
     $SQL_SEARCHING = "SELECT * FROM course WHERE courseName LIKE '$searching%'";
     $result_searching = mysqli_query($conn, $SQL_SEARCHING);
 
@@ -120,8 +121,18 @@ if (isset($_POST['searche_course'])) {
                 <div class="cours">
                     <div class="cours_header"><?php echo $rows['courseName']; ?> </div>
                     <div class="cours_body"></div>
-                    <div class="cours_footer"><a
-                            href="cours_detail.php?id_course=<?php echo $rows['courseID']; ?>">Commencer Cours</a></div>
+                    <div class="cours_footer">
+
+                        <?php if(isset($_POST['searche_course'])){ ?>
+                        <a href="cours_detail.php?id_course=<?php echo $rows['courseID']; ?>">
+                            Commencer Cours
+                        </a>
+                        <?php } else if(isset($_POST['searche_quize'])){ ?>
+                        <a href="quizze_details.php?id_course=<?php echo $rows['courseID']; ?>">
+                            Commencer quizze
+                        </a>
+                        <?php }?>
+                    </div>
                 </div>
             </div>
         </div>
