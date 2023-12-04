@@ -295,7 +295,7 @@ require '../connection.php';?>
         </a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link collapsed" href="utlisateurs.html">
+        <a class="nav-link collapsed" href="utlisateurs.php">
           <i class="bi bi-grid"></i>
           <span>Gestion des Utilisateurs </span>
         </a>
@@ -508,7 +508,7 @@ $row = mysqli_fetch_array($querycoursconn); }
                     $answerText = $answerRow['answerText'];
                     $isCorrect = $answerRow['IsCorrect'];
                 ?>
-                    <li class="list-group-item <?php echo $isCorrect ? 'text-success' : ''; ?>">
+                    <li class="list-group-item <?php echo $isCorrect ? 'text-primary' : ''; ?>">
                         <?php echo $answerText ?>
                     </li>
                 <?php } ?>
