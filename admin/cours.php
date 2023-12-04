@@ -7,7 +7,12 @@ if(isset($_POST['addcours'])){
     $descp_cours = $_POST['description'];
 
     $req = "insert into course values (null, '$cours_name', '$descp_cours')";
-    mysqli_query($conn, $req);
+    $result = mysqli_query($conn, $req);
+    if($result){
+        echo "data is inserted successfully";
+    }else{
+        die("Connection failed: " . mysqli_connect_error());
+    }
 }
 // Get  & display courses
 function get_courses(){
@@ -24,7 +29,12 @@ function get_courses(){
 if(isset($_GET['courseID'])){
     $ID = ($_GET['courseID']);
     $query = "DELETE from course where courseID = $ID";
-    mysqli_query($conn, $query);
+    $result = mysqli_query($conn, $query);
+    if($result){
+        echo "data Deleted successfully";
+    }else{
+        die("Connection failed: " . mysqli_connect_error());
+    }
 }
 // update courses
 if(isset($_POST['Update_cours'])){
@@ -32,7 +42,12 @@ if(isset($_POST['Update_cours'])){
     $cours_name = $_POST['cours_name'];
     $descp_cours = $_POST['description'];
     $query = "UPDATE course SET courseName =' $cours_name', courseDescription = '$descp_cours' where courseID = $ID";
-    mysqli_query($conn, $query);
+    $result = mysqli_query($conn, $query);
+    if($result){
+        echo "course is Updated successfully";
+    }else{
+        die("Connection failed: " . mysqli_connect_error());
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -399,7 +414,7 @@ if(isset($_POST['Update_cours'])){
 
                                            <div class="text-center">
                                                <button type="submit" name="Update_cours" class="btn btn-primary">Update course</button>
-                                               <button type="reset" class="btn btn-secondary">Reset</button>
+                                               <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Reset</button>
                                            </div>
                                        </form><!-- End floating Labels Form -->
 
@@ -444,7 +459,7 @@ if(isset($_POST['Update_cours'])){
 
                                     <div class="text-center">
                                         <button type="submit" name="addcours" class="btn btn-primary">Add course</button>
-                                        <button type="reset" class="btn btn-secondary">Reset</button>
+                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Reset</button>
                                     </div>
                                 </form><!-- End floating Labels Form -->
 

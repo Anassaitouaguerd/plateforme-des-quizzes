@@ -43,7 +43,7 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">NiceAdmin</span>
       </a>
@@ -224,7 +224,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -234,7 +234,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -244,7 +244,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.php">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -274,25 +274,25 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Statistiques  </span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="cours.html">
+        <a class="nav-link collapsed" href="cours.php">
           <i class="bi bi-grid"></i>
           <span>Gestion des Cours</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="QuesRepo.html">
+        <a class="nav-link " href="QuesRepo.php">
           <i class="bi bi-grid"></i>
           <span>Questions & Réponses </span>
         </a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link collapsed" href="utlisateurs.html">
+        <a class="nav-link collapsed" href="utlisateurs.php">
           <i class="bi bi-grid"></i>
           <span>Gestion des Utilisateurs </span>
         </a>
@@ -307,7 +307,7 @@
       <h1>Accueil</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
           <li class="breadcrumb-item active">Gestion des Questions & Réponses </li>
         </ol>
       </nav>
@@ -323,7 +323,7 @@
               Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
               Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
           </div>
-          <a href="QuesRepo_detail.html" class="btn btn-success">Gestion des Questions & Réponses</a>
+          <a href="QuesRepo_detail.php" class="btn btn-success">Gestion des Questions & Réponses</a>
       </div>
       <div class="card " style="max-width: 45%; min-width: 45%;">
           <div class="card-header">Header</div>
