@@ -33,6 +33,8 @@ if(!isset($_SESSION['id_user'])){
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -322,7 +324,118 @@ if(!isset($_SESSION['id_user'])){
     </div>
     <section class="section dashboard">
 <!--Content  ------------------------------------------------>
+   
+  
+     <!-- Your chart canvas goes here -->
+     <div style="width: 400px;">
+    <canvas id="lineChart"></canvas>
+  </div>
 
+  <!-- Card for Statistics -->
+  <div>
+    <div class="card">
+      <h2>Total Revenue</h2>
+      <p>$500,000</p>
+    </div>
+  </div>
+
+  <script>
+    // Line Chart Data
+    var lineChartData = {
+      labels: ['January', 'February', 'March', 'April', 'May'],
+      datasets: [{
+        label: 'Monthly Revenue',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 2,
+        data: [50000, 70000, 90000, 120000, 150000]
+      }]
+    };
+
+    // Line Chart Configuration
+    var lineChartOptions = {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    };
+
+    var lineCtx = document.getElementById('lineChart').getContext('2d');
+    var lineChart = new Chart(lineCtx, {
+      type: 'line',
+      data: lineChartData,
+      options: lineChartOptions
+    });
+  </script>
+  <div style="width: 400px;">
+  <canvas id="barChart"></canvas>
+</div>
+
+<!-- Card for Statistics -->
+<div>
+  <div class="card">
+    <h2>Monthly Sales</h2>
+    <p>1200 units</p>
+  </div>
+</div>
+
+<script>
+  // Bar Chart Data
+  var barChartData = {
+    labels: ['Product A', 'Product B', 'Product C', 'Product D', 'Product E'],
+    datasets: [{
+      label: 'Sales',
+      backgroundColor: 'rgba(75, 192, 192, 0.8)',
+      borderWidth: 1,
+      data: [300, 200, 150, 250, 300]
+    }]
+  };
+
+  // Bar Chart Configuration
+  var barChartOptions = {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  };
+
+  var barCtx = document.getElementById('barChart').getContext('2d');
+  var barChart = new Chart(barCtx, {
+    type: 'bar',
+    data: barChartData,
+    options: barChartOptions
+  });
+</script>
+<div style="width: 400px;">
+  <canvas id="doughnutChart"></canvas>
+</div>
+
+<!-- Card for Statistics -->
+<div>
+  <div class="card">
+    <h2>Market Share</h2>
+    <p>25%</p>
+  </div>
+</div>
+
+<script>
+  // Doughnut Chart Data
+  var doughnutChartData = {
+    labels: ['Product A', 'Product B', 'Product C'],
+    datasets: [{
+      data: [30, 40, 30],
+      backgroundColor: ['rgba(255, 99, 132, 0.8)', 'rgba(54, 162, 235, 0.8)', 'rgba(255, 205, 86, 0.8)'],
+    }]
+  };
+
+  var doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+  var doughnutChart = new Chart(doughnutCtx, {
+    type: 'doughnut',
+    data: doughnutChartData
+  });
+</script>
+   
 
     </section>
   </main>

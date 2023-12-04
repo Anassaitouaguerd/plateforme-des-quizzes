@@ -3,27 +3,32 @@ require_once "../connection.php";
 
 $score = 0;
 $results = [];
+$displayedQuestions = [];
 
 for ($i = 1; $i <= count($_POST) / 2; $i++) {
     $question_id = $_POST["question_" . $i . "_id"];
     $selected_answer = $_POST["reponse" . $i];
 
-    $select_answer = "SELECT * FROM answer WHERE questionID = $question_id";
-    $answers = $conn->query($select_answer);
+    if (!in_array($question_id, $displayedQuestions)) {
+        $select_answer = "SELECT * FROM answer WHERE questionID = $question_id";
+        $answers = $conn->query($select_answer);
 
-    while ($answer = $answers->fetch_assoc()) {
-        $is_correct = ($answer['answerID'] == $selected_answer && $answer['IsCorrect'] == 1);
+        while ($answer = $answers->fetch_assoc()) {
+            $is_correct = ($answer['answerID'] == $selected_answer && $answer['IsCorrect'] == 1);
 
-        if ($is_correct) {
-            $score++;
+            if ($is_correct) {
+                $score++;
+            }
+
+            $results[] = [
+                'question_id' => $question_id,
+                'selected_answer' => $selected_answer,
+                'is_correct' => $is_correct,
+                'correct_answer' => ($answer['IsCorrect'] == 1) ? $answer['answerText'] : null
+            ];
         }
 
-        $results[] = [
-            'question_id' => $question_id,
-            'selected_answer' => $selected_answer,
-            'is_correct' => $is_correct,
-            'correct_answer' => ($answer['IsCorrect'] == 1) ? $answer['answerText'] : null
-        ];
+        $displayedQuestions[] = $question_id;
     }
 }
 ?>
@@ -104,14 +109,7 @@ for ($i = 1; $i <= count($_POST) / 2; $i++) {
 
 <body>
     <div id="js-preloader" class="js-preloader">
-        <div class="preloader-inner">
-            <span class="dot"></span>
-            <div class="dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+        <!-- Your preloader content here -->
     </div>
 
     <section class="section mt-5">
@@ -120,26 +118,65 @@ for ($i = 1; $i <= count($_POST) / 2; $i++) {
             <p class="text-center mb-4">Your score: <?php echo $score; ?></p>
             <div class="results">
                 <?php
-                foreach ($results as $result) {
-                    $question_id = $result['question_id'];
-                    $selected_answer = $result['selected_answer'];
-                    $is_correct = $result['is_correct'];
-                    $correct_answer = $result['correct_answer'];
+                $j=1;
+                foreach ($displayedQuestions as $question_id) {
+                    $select_question = "SELECT * FROM question WHERE questionID = $question_id";
+                    $question_result = $conn->query($select_question);
+                    $question = $question_result->fetch_assoc();
+                    $question_text = $question['questionText'];
                 ?>
+
                     <div class="result-item">
-                        <p class="mb-0">
-                            <strong>Question <?php echo $question_id; ?>:</strong><br>
-                            Your answer: <?php echo $selected_answer; ?>
-                            <?php if ($is_correct) { ?>
-                                <span class='text-success'> (Correct)</span>
-                            <?php } else { ?>
-                                <span class='text-danger'> (Wrong)</span><br>
-                                Correct answer: <?php echo $correct_answer; ?>
-                            <?php } ?>
+                        <p class="mb-2">
+                            <strong>Question <?= $j++ ?>:</strong><br>
+                            <?php echo $question_text; ?>
                         </p>
+
+                        <?php
+                        $selected_answer = null;
+
+                        foreach ($results as $result) {
+                            if ($result['question_id'] == $question_id) {
+                                $selected_answer = $result['selected_answer'];
+                                break;
+                            }
+                        }
+
+                        $select_answers = "SELECT * FROM answer WHERE questionID = $question_id";
+                        $answers = $conn->query($select_answers);
+
+                        while ($answer = $answers->fetch_assoc()) {
+                            $answerText = $answer['answerText'];
+                            $answerID = $answer['answerID'];
+                            $isCorrect = $answer['IsCorrect'];
+                        ?>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" disabled <?php echo ($answerID == $selected_answer) ? 'checked' : ''; ?>>
+                                <label class="form-check-label">
+                                    <?php echo $answerText; ?>
+
+                                    <?php if ($isCorrect && $answerID == $selected_answer) { ?>
+                                        <span class='text-success font-weight-bold'> (Your Answer - Correct)</span>
+                                    <?php } elseif ($isCorrect) { ?>
+                                        <span class='text-success font-weight-bold'> (Correct Answer)</span>
+                                    <?php } elseif ($answerID == $selected_answer) { ?>
+                                        <span class='text-danger font-weight-bold'> (Your Answer - Incorrect)</span>
+                                    <?php } ?>
+                                </label>
+                            </div>
+
+                        <?php } ?>
+
+                        <p class="mb-2">
+                            <strong>Your Selected Answer:</strong> <?php echo $selected_answer; ?>
+                        </p>
+
                     </div>
+
                 <?php } ?>
             </div>
+
         </div>
     </section>
 
@@ -149,6 +186,7 @@ for ($i = 1; $i <= count($_POST) / 2; $i++) {
     <script src="assets/js/animation.js"></script>
     <script src="assets/js/imagesloaded.js"></script>
     <script src="assets/js/custom.js"></script>
+
 </body>
 
 </html>
