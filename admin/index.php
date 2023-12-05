@@ -1,11 +1,11 @@
 <?php
 require '../connection.php';
 session_start();
-// if(!isset($_SESSION['id_user'])){
-//   header('location: ../admin/login.php'); 
-// }else if($_SESSION['roleUser']=="etudiants"){
-//   header('location: ../user/index.php'); 
-// }
+if(!isset($_SESSION['id_user'])){
+  header('location: ../admin/login.php'); 
+}else if($_SESSION['roleUser']=="etudiants"){
+   header('location: ../user/index.php'); 
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -235,7 +235,7 @@ session_start();
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -245,7 +245,7 @@ session_start();
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -255,7 +255,7 @@ session_start();
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.php">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -303,7 +303,7 @@ session_start();
         </a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link collapsed" href="utlisateurs.html">
+        <a class="nav-link collapsed" href="utlisateurs.php">
           <i class="bi bi-grid"></i>
           <span>Gestion des Utilisateurs </span>
         </a>
@@ -318,6 +318,7 @@ session_start();
       <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
+
           <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
           <li class="breadcrumb-item active">Statistiques</li>
         </ol>
@@ -731,6 +732,7 @@ session_start();
 </div>
     </section>
   </main>
+
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">

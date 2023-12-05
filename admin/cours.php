@@ -1,3 +1,55 @@
+<?php
+global $conn;
+require_once "../connection.php";
+// addition de courses
+if(isset($_POST['addcours'])){
+    $cours_name = $_POST['cours_name'];
+    $descp_cours = $_POST['description'];
+
+    $req = "insert into course values (null, '$cours_name', '$descp_cours')";
+    $result = mysqli_query($conn, $req);
+    if($result){
+        echo "data is inserted successfully";
+    }else{
+        die("Connection failed: " . mysqli_connect_error());
+    }
+}
+// Get  & display courses
+function get_courses(){
+    global $conn;
+    $query = "select * from course";
+    $result = mysqli_query($conn, $query);
+    $courses = [];
+    while ($row = mysqli_fetch_assoc($result)){
+        $courses[] = $row;
+    }
+    return $courses;
+}
+// delete courses
+if(isset($_GET['courseID'])){
+    $ID = ($_GET['courseID']);
+    $query = "DELETE from course where courseID = $ID";
+    $result = mysqli_query($conn, $query);
+    if($result){
+        echo "data Deleted successfully";
+    }else{
+        die("Connection failed: " . mysqli_connect_error());
+    }
+}
+// update courses
+if(isset($_POST['Update_cours'])){
+    $ID = $_POST['couresID'];
+    $cours_name = $_POST['cours_name'];
+    $descp_cours = $_POST['description'];
+    $query = "UPDATE course SET courseName =' $cours_name', courseDescription = '$descp_cours' where courseID = $ID";
+    $result = mysqli_query($conn, $query);
+    if($result){
+        echo "course is Updated successfully";
+    }else{
+        die("Connection failed: " . mysqli_connect_error());
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +95,7 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">NiceAdmin</span>
       </a>
@@ -224,7 +276,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -234,7 +286,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -244,7 +296,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.php">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -274,25 +326,25 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Statistiques  </span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="cours.html">
+        <a class="nav-link " href="cours.php">
           <i class="bi bi-grid"></i>
           <span>Gestion des Cours</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="QuesRepo.html">
+        <a class="nav-link collapsed" href="QuesRepo.php">
           <i class="bi bi-grid"></i>
           <span>Questions & Réponses </span>
         </a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link collapsed" href="utlisateurs.html">
+        <a class="nav-link collapsed" href="utlisateurs.php">
           <i class="bi bi-grid"></i>
           <span>Gestion des Utilisateurs </span>
         </a>
@@ -307,7 +359,7 @@
       <h1>Accueil</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
           <li class="breadcrumb-item active">Gestion Cours</li>
         </ol>
       </nav>
@@ -315,150 +367,108 @@
     <section class="section dashboard">
 <!--Content  ------------------------------------------------>
     <button type="submit"  class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addCours" >Ajoute une cours </button>
-    <div class="modal fade" id="addCours" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Vertically Centered</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="card">
-                      <div class="card-body">
-                      <h5 class="card-title">Cours Information</h5>
-              
-                      <!-- Floating Labels Form -->
-                      <form class="row g-3">
-                          <div class="col-md-12">
-                          <div class="form-floating">
-                              <input type="text" class="form-control" id="floatingName" placeholder="Your Name">
-                              <label for="floatingName">Cours Name</label>
-                          </div>
-                          </div>
-                          <div class="col-12">
-                          <div class="form-floating">
-                              <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"></textarea>
-                              <label for="floatingTextarea">Cours Description</label>
-                          </div>
-                          </div>
-                          <div class="col-12">
-                              <div class="form-floating">
-                              <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 300px;"></textarea>
-                              <label for="floatingTextarea">Cours Content</label>
-                              </div>
-                          </div>
-                          <div class="text-center">
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                          <button type="reset" class="btn btn-secondary">Reset</button>
-                          </div>
-                      </form><!-- End floating Labels Form -->
-              
-                      </div>
-                  </div> 
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="allCours d-flex gap-5" style="flex-wrap: wrap;">
-        <div class="card " style="max-width: 45%; min-width: 45%;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h5 class="card-title">Card with header and footer</h5>
-                Ut in ea error laudantium quas o totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
+        <?php
+        $courses = get_courses();
+           for($i = 0; $i < count($courses); $i++){
+        ?>
+            <div class="card " style="max-width: 45%; min-width: 45%;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title"><?= $courses[$i]['courseName'] ?></h5>
+                    <p><?= $courses[$i]['courseDescription'] ?></p>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#updateCourss<?= $courses[$i]['courseID'] ?>" >Update</button>
+                    <a class="btn btn-danger" href="cours.php?courseID=<?= $courses[$i]['courseID'] ?>">Delete</a>
+                </div>
             </div>
-            <div class="card-footer">
-                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateCours" >Update</button>
-                <div class="modal fade" id="updateCours" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Vertically Centered</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <div class="card">
-                                  <div class="card-body">
-                                  <h5 class="card-title">Cours Information</h5>
-                          
-                                  <!-- Floating Labels Form -->
-                                  <form class="row g-3">
-                                      <div class="col-md-12">
-                                      <div class="form-floating">
-                                          <input type="text" class="form-control" value="Card with header and footer" id="floatingName" placeholder="Your Name">
-                                          <label for="floatingName">Cours Name</label>
-                                      </div>
-                                      </div>
-                                      <div class="col-12">
-                                      <div class="form-floating">
-                                          <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;">
-                                            Ut in ea error laudantium quas o totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
+               <div class="modal fade" id="updateCourss<?= $courses[$i]['courseID'] ?>" tabindex="-1">
+                   <div class="modal-dialog modal-dialog-centered modal-lg">
+                       <div class="modal-content">
+                           <div class="modal-header">
+                               <h5 class="modal-title">Vertically Centered</h5>
+                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                           </div>
+                           <div class="modal-body">
+                               <div class="card">
+                                   <div class="card-body">
+                                       <h5 class="card-title">Cours Information</h5>
+
+                                       <!-- Floating Labels Form -->
+                                       <form class="row g-3" method="POST" action="cours.php">
+                                           <div class="col-md-12">
+                                               <div class="form-floating">
+                                                   <input type="text" name="cours_name" class="form-control" value="<?= $courses[$i]['courseName'] ?>" id="namecours" placeholder="Your Name">
+                                                   <label for="floatingName">Cours Name</label>
+                                               </div>
+                                           </div>
+                                           <div class="col-12">
+                                               <div class="form-floating">
+                                          <textarea class="form-control" name="description" placeholder="Address" id="descrip" style="height: 100px;"><?= $courses[$i]['courseDescription'] ?>
                                           </textarea>
-                                          <label for="floatingTextarea">Cours Description</label>
-                                      </div>
-                                      </div>
-                                      <div class="col-12">
-                                          <div class="form-floating">
-                                          <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 300px;">
-                                          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo dolor blanditiis sit totam veniam ex 
-                                          obcaecati aut saepe, eius ut, asperiores quaerat, magni vel iusto sapiente expedita voluptate quidem officia!
-                                          </textarea>
-                                          <label for="floatingTextarea">Cours Content</label>
-                                          </div>
-                                      </div>
-                                      <div class="text-center">
-                                      <button type="submit" class="btn btn-primary">Submit</button>
-                                      <button type="reset" class="btn btn-secondary">Reset</button>
-                                      </div>
-                                  </form><!-- End floating Labels Form -->
-                          
-                                  </div>
-                              </div> 
+                                                   <label for="floatingTextarea">Cours Description</label>
+                                               </div>
+                                           </div>
+                                           <input type="hidden" name="couresID" value="<?= $courses[$i]['courseID'] ?>">
+
+                                           <div class="text-center">
+                                               <button type="submit" name="Update_cours" class="btn btn-primary">Update course</button>
+                                               <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Reset</button>
+                                           </div>
+                                       </form><!-- End floating Labels Form -->
+
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+        <?php
+           }
+        ?>
+    </div>
+    <div class="modal fade" id="addCours" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Vertically Centered</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Cours Information</h5>
+
+                                <!-- Floating Labels Form -->
+                                <!-- Floating Labels Form -->
+                                <form class="row g-3" method="POST" action="cours.php">
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
+                                            <input type="text" name="cours_name" class="form-control" id="floatingName" placeholder="Your Name">
+                                            <label for="floatingName">Cours Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                              <textarea class="form-control" name="description" placeholder="Address" id="floatingTextarea" style="height: 100px;">
+                                              </textarea>
+                                            <label for="floatingTextarea">Cours Description</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" name="addcours" class="btn btn-primary">Add course</button>
+                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Reset</button>
+                                    </div>
+                                </form><!-- End floating Labels Form -->
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-danger">Delete</a>
             </div>
         </div>
-        <div class="card " style="max-width: 45%; min-width: 45%;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h5 class="card-title">Card with header and footer</h5>
-                Ut in ea error laudantium quas omnis s ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-                Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
-            </div>
-            <div class="card-footer">
-              <button type="button" class="btn btn-warning">Update</button>
-              <a type="button" class="btn btn-danger">Delete</a>
-            </div>
-        </div>
-        <div class="card " style="max-width: 45%; min-width: 45%;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h5 class="card-title">Card with header and footer</h5>
-                Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-                Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-                Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
-            </div>
-            <div class="card-footer">
-              <button type="button" class="btn btn-warning">Update</button>
-              <button type="button" class="btn btn-danger">Delete</button>
-            </div>
-        </div>
-        <div class="card " style="max-width: 45%; min-width: 45%;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h5 class="card-title">Card with header and footer</h5>
-                Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-                Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-                Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
-            </div>
-            <div class="card-footer">
-              <button type="button" class="btn btn-warning">Update</button>
-              <button type="button" class="btn btn-danger">Delete</button>
-            </div>
-        </div>
-    </div>
 
     </section>
   </main>
@@ -484,6 +494,7 @@
   </div>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
 
 </body>
 

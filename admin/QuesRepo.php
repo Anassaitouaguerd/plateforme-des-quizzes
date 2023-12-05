@@ -226,7 +226,7 @@ require '../connection.php';?>
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -236,7 +236,7 @@ require '../connection.php';?>
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -246,7 +246,7 @@ require '../connection.php';?>
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.php">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -326,8 +326,13 @@ require '../connection.php';?>
           <div class="card-header">cours</div>
           <div class="card-body allCours d-flex gap-5" style="flex-wrap: wrap;" >
               <h5 class="card-title"><?php echo $row['courseName'] ?></h5>
+<<<<<<< HEAD
               <p><?php echo $row['courseDescription']; ?></p>
           </div>
+=======
+              <?php echo $row['courseDescription']; ?>
+        </div>
+>>>>>>> 095ae69dfa9d0f51065eb5c338295f33f40f281d
           <a href="QuesRepo_detail.php?idcours=<?php echo $row['courseID'] ?>" class="btn btn-success">Gestion des Questions & Réponses</a>
       </div>
      <?php }?>
