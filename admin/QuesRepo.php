@@ -226,7 +226,7 @@ require '../connection.php';?>
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -236,7 +236,7 @@ require '../connection.php';?>
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -246,7 +246,7 @@ require '../connection.php';?>
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.php">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -327,7 +327,7 @@ require '../connection.php';?>
           <div class="card-body">
               <h5 class="card-title"><?php echo $row['courseName'] ?></h5>
               <?php echo $row['courseDescription']; ?>
-          </div>
+        </div>
           <a href="QuesRepo_detail.php?idcours=<?php echo $row['courseID'] ?>" class="btn btn-success">Gestion des Questions & Réponses</a>
       </div>
      <?php }?>
