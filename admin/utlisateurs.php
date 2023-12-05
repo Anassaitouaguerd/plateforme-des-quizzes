@@ -270,7 +270,6 @@
         </nav><!-- End Icons Navigation -->
 
     </header>
-
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
@@ -281,7 +280,6 @@
                     <i class="bi bi-grid"></i>
                     <span>Statistiques </span>
                 </a>
-
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="cours.php">
@@ -289,20 +287,11 @@
                     <span>Gestion des Cours</span>
                 </a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="QuesRepo.php">
                     <i class="bi bi-grid"></i>
                     <span>Questions & Réponses </span>
                 </a>
-
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-
             </li>
             <li class="nav-item ">
                 <a class="nav-link " href="utlisateurs.php">
@@ -312,128 +301,20 @@
             </li>
         </ul>
 
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.php">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-   </aside>
-
+    </aside>
 
     <main id="main" class="main">
 
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-
-      </ul>
-    </nav><!-- End Icons Navigation -->
-
-  </header>
-
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php">
-          <i class="bi bi-grid"></i>
-          <span>Statistiques  </span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="cours.php">
-          <i class="bi bi-grid"></i>
-          <span>Gestion des Cours</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="QuesRepo.php">
-          <i class="bi bi-grid"></i>
-          <span>Questions & Réponses </span>
-        </a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link " href="utlisateurs.php">
-          <i class="bi bi-grid"></i>
-          <span>Gestion des Utilisateurs </span>
-        </a>
-      </li>
-    </ul>
-
-  </aside>
-
-  <main id="main" class="main">
-
-    <div class="pagetitle">
-      <h1>Accueil</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
-          <li class="breadcrumb-item active">Gestion des Utilisateurs </li>
-        </ol>
-      </nav>
-    </div>
-    <section class="section dashboard">
-<!--Content  ------------------------------------------------>
-    <button type="submit"  class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#adduser" >Ajoute une Utilisateur </button>
-    <div class="modal fade" id="adduser" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Vertically Centered</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="card">
-                      <div class="card-body">
-                      <h5 class="card-title">Utlisateur Information</h5>
-              
-                      <!-- Floating Labels Form -->
-                      <form class="row g-3">
-                          <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" placeholder="Your Name">
-                                <label for="floatingName">Nom Utlisateur</label>
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="email" class="form-control" id="floatingName" placeholder="Your Name">
-                                <label for="floatingName">Email</label>
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <label for="floatingName">Role Utlisateur</label>
-                            <select name="" class="form-control" id="">
-                              <option value="0">Administrateur</option>
-                              <option value="1">Utlisateur</option>
-                            </select>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" placeholder="Your Name">
-                                <label for="floatingName">Mote de pass</label>
-                            </div>
-                          </div>
-                         
-                          <div class="text-center">
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                          <button type="reset" class="btn btn-secondary">Reset</button>
-                          </div>
-                      </form><!-- End floating Labels Form -->
-              
-                      </div>
-                  </div> 
-                </div>
-            </div>
-
+        <div class="pagetitle">
+            <h1>Accueil</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
+                    <li class="breadcrumb-item active">Gestion des Utilisateurs </li>
+                </ol>
+            </nav>
         </div>
+
         <section class="section dashboard">
             <!--Content  ------------------------------------------------>
             <button type="submit" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#adduser">Ajoute
