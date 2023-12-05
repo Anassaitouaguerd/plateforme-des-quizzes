@@ -53,26 +53,28 @@ require "../connection.php";
                             <li class="scroll-to-section"><a href="index.php">suivre à l'avance</a></li>
                             <li class="scroll-to-section"><a href="index.php">Services</a></li>
                             <?php 
-              if(isset($_SESSION['id_user'])){
-              ?>
+                                if(isset($_SESSION['id_user'])){
+                            ?>
                             <li class="scroll-to-section"><a href="cours.php" class="active">Cours</a></li>
                             <li class="scroll-to-section"><a href="quizze.php">Quizzes</a></li>
                             <?php } ?>
                             <li class="scroll-to-section"><a href="index.php">Contact</a></li>
                             <?php 
-              if(isset($_SESSION['id_user'])){
-              ?>
+                                if(isset($_SESSION['id_user'])){
+                            ?>
                             <li class="scroll-to-section">
                                 <div class="border-first-button"><a
                                         href="../admin/scripte.php?log_out=ok">Deconexion</a></div>
                             </li>
-                            <?php } else{
-                ?>
+                            <?php
+                                 } else {
+                            ?>
                             <li class="scroll-to-section">
                                 <div class="border-first-button"><a href="../admin/login.php">Connexion</a></div>
                             </li>
                             <?php
-              } ?>
+                                }
+                             ?>
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -85,26 +87,24 @@ require "../connection.php";
     </header>
     <!-- ***** Header Area End ***** -->
     <section>
-
-
-        <div id="contact" class="contact-us section">
+        <div id="contact" class="contact-us section ">
             <div class="image" style="width: 100%; height: 300px; overflow: hidden; ">
                 <img src="assets/images/blog-post-01.jpg" alt="">
             </div>
             <div class="container mt-5">
                 <?php
-      if(isset($_GET['id_course'])){
-        $id_course = $_GET['id_course'];
-        $SQL_DISCRIPTION_COURSE = "SELECT * FROM course WHERE courseID = $id_course";
-        $result_DS = mysqli_query($conn,$SQL_DISCRIPTION_COURSE);
-        $rows = mysqli_fetch_assoc($result_DS);
-      ?>
+                 if(isset($_GET['id_course'])){
+                   $id_course = $_GET['id_course'];
+                   $SQL_DISCRIPTION_COURSE = "SELECT * FROM course WHERE courseID = $id_course";
+                   $result_DS = mysqli_query($conn,$SQL_DISCRIPTION_COURSE);
+                   $rows = mysqli_fetch_assoc($result_DS);
+                 ?>
                 <div class="container mt-4 d-flex justify-content-center rounded-1"
                     style="background: #007bff; color: white;">
                     <h1 class="font-weight-bold"><?php echo $rows['courseName'] ;?></h1>
                 </div>
                 <div class="courses p-4 bg-light">
-                    <?php echo $rows['courseDescription'] ;?>
+                    <?php echo $rows['courseDescription'];?>
                 </div>
 
                 <div class="d-flex justify-content-between mt-3 mb-4">
@@ -116,12 +116,8 @@ require "../connection.php";
               } 
               ?>
             </div>
-
-
         </div>
     </section>
-
-
     <!-- Scripts -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
