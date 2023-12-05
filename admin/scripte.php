@@ -26,6 +26,7 @@ if(isset($_POST["login_submit"])){
     if($res){
         $user=$res->fetch_assoc();
         $_SESSION['roleUser']=$user['role'];
+        $_SESSION['usename']=$user['username'];
         $_SESSION['id_user']=$user['userID'];
 
         if($user['role']=="etudiants"){
