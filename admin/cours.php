@@ -54,36 +54,34 @@ if(isset($_POST['Update_cours'])){
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard - NiceAdmin Bootstrap Template</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
 
-    <!-- =======================================================
+  <!-- =======================================================
   * Template Name: NiceAdmin
   * Updated: Nov 17 2023 with Bootstrap v5.3.2
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -94,8 +92,6 @@ if(isset($_POST['Update_cours'])){
 
 <body>
 
-
-    
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
@@ -284,15 +280,10 @@ if(isset($_POST['Update_cours'])){
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
-
             </li>
-            <li class="nav-item">
-                <a class="nav-link " href="cours.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Gestion des Cours</span>
-                </a>
+            <li>
+              <hr class="dropdown-divider">
             </li>
-
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
@@ -300,14 +291,9 @@ if(isset($_POST['Update_cours'])){
                 <span>Account Settings</span>
               </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link collapsed" href="utlisateurs.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Gestion des Utilisateurs </span>
-                </a>
+            <li>
+              <hr class="dropdown-divider">
             </li>
-        </ul>
-
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="pages-faq.php">
@@ -318,6 +304,20 @@ if(isset($_POST['Update_cours'])){
             <li>
               <hr class="dropdown-divider">
             </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
   </header>
 
   <!-- ======= Sidebar ======= -->
@@ -463,62 +463,11 @@ if(isset($_POST['Update_cours'])){
                                     </div>
                                 </form><!-- End floating Labels Form -->
 
-
                             </div>
                         </div>
-                        <a class="btn btn-danger">Delete</a>
-                    </div>
-                </div>
-                <div class="card " style="max-width: 45%; min-width: 45%;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card with header and footer</h5>
-                        Ut in ea error laudantium quas omnis s ullam iusto dolorem animi dolorem numquam. Enim fuga
-                        ipsum dolor nulla quia ut.
-                        Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut.
-                        Consequatur rerum in.
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-warning">Update</button>
-                        <a type="button" class="btn btn-danger">Delete</a>
-                    </div>
-                </div>
-                <div class="card " style="max-width: 45%; min-width: 45%;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card with header and footer</h5>
-                        Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore
-                        consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus
-                        assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-                        Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim
-                        fuga ipsum dolor nulla quia ut.
-                        Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut.
-                        Consequatur rerum in.
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-warning">Update</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </div>
-                </div>
-                <div class="card " style="max-width: 45%; min-width: 45%;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card with header and footer</h5>
-                        Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore
-                        consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus
-                        assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-                        Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim
-                        fuga ipsum dolor nulla quia ut.
-                        Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut.
-                        Consequatur rerum in.
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-warning">Update</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
             </div>
-
         </div>
 
     </section>
@@ -545,6 +494,7 @@ if(isset($_POST['Update_cours'])){
   </div>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
 
 </body>
 
