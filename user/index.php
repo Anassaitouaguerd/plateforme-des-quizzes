@@ -58,11 +58,13 @@ if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']=="admin"){
                             <?php 
               if(isset($_SESSION['id_user'])){
               ?>
+
                             <li class="scroll-to-section"><a href="cours.php">Cours</a></li>
                             <li class="scroll-to-section"><a href="quizze.php">Quizzes</a></li>
                             <?php } ?>
                             <li class="scroll-to-section"><a href="index.php">Contact</a></li>
                             <?php 
+
               if(isset($_SESSION['id_user'])){
               ?>
                             <li class="scroll-to-section">
