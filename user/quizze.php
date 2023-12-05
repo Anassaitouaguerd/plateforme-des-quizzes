@@ -1,5 +1,10 @@
-<?php 
-require "../connection.php";
+
+<?php
+require_once "../connection.php";
+if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']=="admin"){
+  header('location: ../admin/index.php'); 
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,30 +41,33 @@ require "../connection.php";
             </div>
         </div>
     </div>
-    <!-- ***** Header Area Start ***** -->
-    <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="main-nav">
-                        <!-- ***** Logo Start ***** -->
-                        <a href="index.php" class="logo">
-                            <img src="assets/images/logo-v3.png" alt="">
-                        </a>
-                        <!-- ***** Logo End ***** -->
-                        <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-                            <li class="scroll-to-section"><a href="index.php">Accueil</a></li>
-                            <li class="scroll-to-section"><a href="index.php">suivre à l'avance</a></li>
-                            <li class="scroll-to-section"><a href="index.php">Services</a></li>
-                            <?php 
+
+  </div>
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.php" class="logo">
+              <img src="assets/images/logo-v3.png" alt="">
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="index.php">Accueil</a></li>
+              <li class="scroll-to-section"><a href="index.php">suivre à l'avance</a></li>
+              <li class="scroll-to-section"><a href="index.php">Services</a></li>
+              <?php 
               if(isset($_SESSION['id_user'])){
               ?>
-                            <li class="scroll-to-section"><a href="cours.php">Cours</a></li>
-                            <li class="scroll-to-section"><a href="quizze.php" class="active">Quizzes</a></li>
-                            <?php } ?>
-                            <li class="scroll-to-section"><a href="index.php">Contact</a></li>
-                            <?php 
+              <li class="scroll-to-section"><a href="cours.php">Cours</a></li>
+              <li class="scroll-to-section"><a href="quizze.php" class="active">Quizzes</a></li>
+              <?php } ?>
+              <li class="scroll-to-section"><a href="index.php">Contact</a></li> 
+              <?php 
+
               if(isset($_SESSION['id_user'])){
               ?>
                             <li class="scroll-to-section">
@@ -73,64 +81,43 @@ require "../connection.php";
                             </li>
                             <?php
               } ?>
-                        </ul>
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
-                        <!-- ***** Menu End ***** -->
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
-    <section>
-        <form action="Search_course.php" method="POST">
-            <div class="container">
-                <div class="row height d-flex justify-content-center align-items-center">
-                    <div class="col-md-6">
-                        <div class="form d-flex  ">
-                            <i class="fa fa-search"></i>
-                            <input type="text" name="searching" class="form-control form-input search_course"
-                                placeholder="Search anything...">
-                            <button class="left-pan bt_searche" type="submit" name="searche_quize">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-search" viewBox="0 0 16 16">
-                                    <path
-                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
 
-        <?php  
-          
-          $SQL_AFFICHER_COURSE = "SELECT * FROM course";
-          $result_afficher_course = mysqli_query($conn,$SQL_AFFICHER_COURSE);
-          
-            foreach($result_afficher_course as $rows){
-                
-         ?>
-        <div id="contact<?php echo $rows['courseID'] ;?>" class="section row">
-            <div class="container col-lg-5 mt-5">
-                <div class="cours">
-                    <div class="cours_header"><?php echo $rows['courseName'] ?> </div>
-                    <div class="cours_body"></div>
-                    <div class="cours_footer"><a
-                            href="quizze_details.php?id_quize=<?php echo $rows['courseID'];?>">Commencer Quizze</a>
-                    </div>
-                </div>
-            </div>
+            </ul>        
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
         </div>
-
+      </div>
+    </div>
+  </header>
+  <section>
+    
+    <div id="contact" class="contact-us section row" >
+      <?php
+      $select_cours = "SELECT * FROM course";
+      $cours=$conn->query($select_cours);
+      while($cour=$cours->fetch_assoc()){
+      $id_cours=$cour["courseID"];
+      ?>
+      <div class="container col-lg-5 mt-5">
+        <div class="cours">
+          <div class="cours_header"><?=$cour["courseName"]?></div>
+          <div class="cours_body coursse" style='height:160px; overflow: scroll;'><?=$cour["courseDescription"]?></div>
+          <div class="cours_footer"><a href="quizze_details.php?id_cours=<?=$id_cours?>">Commencer Quizze</a></div>
         </div>
-        <?php
-        }
-        ?>
-    </section>
+      </div>
+      <?php
+      }
+      ?>
+    </div>
+  </section>
+  <style>
+    .coursse::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
 
 
     <!-- Scripts -->

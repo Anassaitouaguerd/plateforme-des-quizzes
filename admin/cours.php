@@ -1,3 +1,55 @@
+<?php
+global $conn;
+require_once "../connection.php";
+// addition de courses
+if(isset($_POST['addcours'])){
+    $cours_name = $_POST['cours_name'];
+    $descp_cours = $_POST['description'];
+
+    $req = "insert into course values (null, '$cours_name', '$descp_cours')";
+    $result = mysqli_query($conn, $req);
+    if($result){
+        echo "data is inserted successfully";
+    }else{
+        die("Connection failed: " . mysqli_connect_error());
+    }
+}
+// Get  & display courses
+function get_courses(){
+    global $conn;
+    $query = "select * from course";
+    $result = mysqli_query($conn, $query);
+    $courses = [];
+    while ($row = mysqli_fetch_assoc($result)){
+        $courses[] = $row;
+    }
+    return $courses;
+}
+// delete courses
+if(isset($_GET['courseID'])){
+    $ID = ($_GET['courseID']);
+    $query = "DELETE from course where courseID = $ID";
+    $result = mysqli_query($conn, $query);
+    if($result){
+        echo "data Deleted successfully";
+    }else{
+        die("Connection failed: " . mysqli_connect_error());
+    }
+}
+// update courses
+if(isset($_POST['Update_cours'])){
+    $ID = $_POST['couresID'];
+    $cours_name = $_POST['cours_name'];
+    $descp_cours = $_POST['description'];
+    $query = "UPDATE course SET courseName =' $cours_name', courseDescription = '$descp_cours' where courseID = $ID";
+    $result = mysqli_query($conn, $query);
+    if($result){
+        echo "course is Updated successfully";
+    }else{
+        die("Connection failed: " . mysqli_connect_error());
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,244 +94,197 @@
 
 <body>
 
-    <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top d-flex align-items-center">
-        <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
-                <img src="assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">NiceAdmin</span>
-            </a>
-            <i class="bi bi-list toggle-sidebar-btn"></i>
-        </div><!-- End Logo -->
 
-        <div class="search-bar">
-            <form class="search-form d-flex align-items-center" method="POST" action="#">
-                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-            </form>
-        </div><!-- End Search Bar -->
+    
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.php" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">NiceAdmin</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
 
-        <nav class="header-nav ms-auto">
-            <ul class="d-flex align-items-center">
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
 
-                <li class="nav-item d-block d-lg-none">
-                    <a class="nav-link nav-icon search-bar-toggle " href="#">
-                        <i class="bi bi-search"></i>
-                    </a>
-                </li><!-- End Search Icon-->
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
 
-                <li class="nav-item dropdown">
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
 
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                        <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number">4</span>
-                    </a><!-- End Notification Icon -->
+        <li class="nav-item dropdown">
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                        <li class="dropdown-header">
-                            You have 4 new notifications
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">4</span>
+          </a><!-- End Notification Icon -->
 
-                        <li class="notification-item">
-                            <i class="bi bi-exclamation-circle text-warning"></i>
-                            <div>
-                                <h4>Lorem Ipsum</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>30 min. ago</p>
-                            </div>
-                        </li>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              You have 4 new notifications
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+            <li class="notification-item">
+              <i class="bi bi-exclamation-circle text-warning"></i>
+              <div>
+                <h4>Lorem Ipsum</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>30 min. ago</p>
+              </div>
+            </li>
 
-                        <li class="notification-item">
-                            <i class="bi bi-x-circle text-danger"></i>
-                            <div>
-                                <h4>Atque rerum nesciunt</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>1 hr. ago</p>
-                            </div>
-                        </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+            <li class="notification-item">
+              <i class="bi bi-x-circle text-danger"></i>
+              <div>
+                <h4>Atque rerum nesciunt</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>1 hr. ago</p>
+              </div>
+            </li>
 
-                        <li class="notification-item">
-                            <i class="bi bi-check-circle text-success"></i>
-                            <div>
-                                <h4>Sit rerum fuga</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>2 hrs. ago</p>
-                            </div>
-                        </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+            <li class="notification-item">
+              <i class="bi bi-check-circle text-success"></i>
+              <div>
+                <h4>Sit rerum fuga</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>2 hrs. ago</p>
+              </div>
+            </li>
 
-                        <li class="notification-item">
-                            <i class="bi bi-info-circle text-primary"></i>
-                            <div>
-                                <h4>Dicta reprehenderit</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>4 hrs. ago</p>
-                            </div>
-                        </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li class="dropdown-footer">
-                            <a href="#">Show all notifications</a>
-                        </li>
+            <li class="notification-item">
+              <i class="bi bi-info-circle text-primary"></i>
+              <div>
+                <h4>Dicta reprehenderit</h4>
+                <p>Quae dolorem earum veritatis oditseno</p>
+                <p>4 hrs. ago</p>
+              </div>
+            </li>
 
-                    </ul><!-- End Notification Dropdown Items -->
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-footer">
+              <a href="#">Show all notifications</a>
+            </li>
 
-                </li><!-- End Notification Nav -->
+          </ul><!-- End Notification Dropdown Items -->
 
-                <li class="nav-item dropdown">
+        </li><!-- End Notification Nav -->
 
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                        <i class="bi bi-chat-left-text"></i>
-                        <span class="badge bg-success badge-number">3</span>
-                    </a><!-- End Messages Icon -->
+        <li class="nav-item dropdown">
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-                        <li class="dropdown-header">
-                            You have 3 new messages
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-chat-left-text"></i>
+            <span class="badge bg-success badge-number">3</span>
+          </a><!-- End Messages Icon -->
 
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>Maria Hudson</h4>
-                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                    <p>4 hrs. ago</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+            <li class="dropdown-header">
+              You have 3 new messages
+              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>Anna Nelson</h4>
-                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                    <p>6 hrs. ago</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+            <li class="message-item">
+              <a href="#">
+                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                <div>
+                  <h4>Maria Hudson</h4>
+                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  <p>4 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>David Muldon</h4>
-                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                    <p>8 hrs. ago</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+            <li class="message-item">
+              <a href="#">
+                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                <div>
+                  <h4>Anna Nelson</h4>
+                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  <p>6 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
-                        <li class="dropdown-footer">
-                            <a href="#">Show all messages</a>
-                        </li>
+            <li class="message-item">
+              <a href="#">
+                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                <div>
+                  <h4>David Muldon</h4>
+                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  <p>8 hrs. ago</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
-                    </ul><!-- End Messages Dropdown Items -->
+            <li class="dropdown-footer">
+              <a href="#">Show all messages</a>
+            </li>
 
-                </li><!-- End Messages Nav -->
+          </ul><!-- End Messages Dropdown Items -->
 
-                <li class="nav-item dropdown pe-3">
+        </li><!-- End Messages Nav -->
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-                    </a><!-- End Profile Iamge Icon -->
+        <li class="nav-item dropdown pe-3">
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                        <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
-                            <span>Web Designer</span>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+          </a><!-- End Profile Iamge Icon -->
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-person"></i>
-                                <span>My Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Kevin Anderson</h6>
+              <span>Web Designer</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-gear"></i>
-                                <span>Account Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                                <i class="bi bi-question-circle"></i>
-                                <span>Need Help?</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
-                            </a>
-                        </li>
-
-                    </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
-
-            </ul>
-        </nav><!-- End Icons Navigation -->
-
-    </header>
-
-    <!-- ======= Sidebar ======= -->
-    <aside id="sidebar" class="sidebar">
-
-        <ul class="sidebar-nav" id="sidebar-nav">
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="index.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Statistiques </span>
-                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="cours.php">
@@ -287,11 +292,13 @@
                     <span>Gestion des Cours</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="QuesRepo.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Questions & Réponses </span>
-                </a>
+
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
+                <i class="bi bi-gear"></i>
+                <span>Account Settings</span>
+              </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link collapsed" href="utlisateurs.php">
@@ -301,133 +308,162 @@
             </li>
         </ul>
 
-    </aside>
 
-    <main id="main" class="main">
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.php">
+                <i class="bi bi-question-circle"></i>
+                <span>Need Help?</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+  </header>
 
-        <div class="pagetitle">
-            <h1>Accueil</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
-                    <li class="breadcrumb-item active">Gestion Cours</li>
-                </ol>
-            </nav>
-        </div>
-        <section class="section dashboard">
-            <!--Content  ------------------------------------------------>
-            <button type="submit" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addCours">Ajoute
-                une cours </button>
-            <div class="modal fade" id="addCours" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Vertically Centered</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Cours Information</h5>
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
 
-                                    <!-- Floating Labels Form -->
-                                    <form class="row g-3">
-                                        <div class="col-md-12">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control" id="floatingName"
-                                                    placeholder="Your Name">
-                                                <label for="floatingName">Cours Name</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-floating">
-                                                <textarea class="form-control" placeholder="Address"
-                                                    id="floatingTextarea" style="height: 100px;"></textarea>
-                                                <label for="floatingTextarea">Cours Description</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-floating">
-                                                <textarea class="form-control" placeholder="Address"
-                                                    id="floatingTextarea" style="height: 300px;"></textarea>
-                                                <label for="floatingTextarea">Cours Content</label>
-                                            </div>
-                                        </div>
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                            <button type="reset" class="btn btn-secondary">Reset</button>
-                                        </div>
-                                    </form><!-- End floating Labels Form -->
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php">
+          <i class="bi bi-grid"></i>
+          <span>Statistiques  </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="cours.php">
+          <i class="bi bi-grid"></i>
+          <span>Gestion des Cours</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="QuesRepo.php">
+          <i class="bi bi-grid"></i>
+          <span>Questions & Réponses </span>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link collapsed" href="utlisateurs.php">
+          <i class="bi bi-grid"></i>
+          <span>Gestion des Utilisateurs </span>
+        </a>
+      </li>
+    </ul>
+
+  </aside>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Accueil</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
+          <li class="breadcrumb-item active">Gestion Cours</li>
+        </ol>
+      </nav>
+    </div>
+    <section class="section dashboard">
+<!--Content  ------------------------------------------------>
+    <button type="submit"  class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addCours" >Ajoute une cours </button>
+    <div class="allCours d-flex gap-5" style="flex-wrap: wrap;">
+        <?php
+        $courses = get_courses();
+           for($i = 0; $i < count($courses); $i++){
+        ?>
+            <div class="card " style="max-width: 45%; min-width: 45%;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title"><?= $courses[$i]['courseName'] ?></h5>
+                    <p><?= $courses[$i]['courseDescription'] ?></p>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#updateCourss<?= $courses[$i]['courseID'] ?>" >Update</button>
+                    <a class="btn btn-danger" href="cours.php?courseID=<?= $courses[$i]['courseID'] ?>">Delete</a>
                 </div>
             </div>
-            <div class="allCours d-flex gap-5" style="flex-wrap: wrap;">
-                <div class="card " style="max-width: 45%; min-width: 45%;">
-                    <div class="card-header">Header</div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card with header and footer</h5>
-                        Ut in ea error laudantium quas o totam numquam nobis distinctio. Sit sint aut. Consequatur rerum
-                        in.
+               <div class="modal fade" id="updateCourss<?= $courses[$i]['courseID'] ?>" tabindex="-1">
+                   <div class="modal-dialog modal-dialog-centered modal-lg">
+                       <div class="modal-content">
+                           <div class="modal-header">
+                               <h5 class="modal-title">Vertically Centered</h5>
+                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                           </div>
+                           <div class="modal-body">
+                               <div class="card">
+                                   <div class="card-body">
+                                       <h5 class="card-title">Cours Information</h5>
+
+                                       <!-- Floating Labels Form -->
+                                       <form class="row g-3" method="POST" action="cours.php">
+                                           <div class="col-md-12">
+                                               <div class="form-floating">
+                                                   <input type="text" name="cours_name" class="form-control" value="<?= $courses[$i]['courseName'] ?>" id="namecours" placeholder="Your Name">
+                                                   <label for="floatingName">Cours Name</label>
+                                               </div>
+                                           </div>
+                                           <div class="col-12">
+                                               <div class="form-floating">
+                                          <textarea class="form-control" name="description" placeholder="Address" id="descrip" style="height: 100px;"><?= $courses[$i]['courseDescription'] ?>
+                                          </textarea>
+                                                   <label for="floatingTextarea">Cours Description</label>
+                                               </div>
+                                           </div>
+                                           <input type="hidden" name="couresID" value="<?= $courses[$i]['courseID'] ?>">
+
+                                           <div class="text-center">
+                                               <button type="submit" name="Update_cours" class="btn btn-primary">Update course</button>
+                                               <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Reset</button>
+                                           </div>
+                                       </form><!-- End floating Labels Form -->
+
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+        <?php
+           }
+        ?>
+    </div>
+    <div class="modal fade" id="addCours" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Vertically Centered</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                            data-bs-target="#updateCours">Update</button>
-                        <div class="modal fade" id="updateCours" tabindex="-1">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Vertically Centered</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Cours Information</h5>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Cours Information</h5>
 
-                                                <!-- Floating Labels Form -->
-                                                <form class="row g-3">
-                                                    <div class="col-md-12">
-                                                        <div class="form-floating">
-                                                            <input type="text" class="form-control"
-                                                                value="Card with header and footer" id="floatingName"
-                                                                placeholder="Your Name">
-                                                            <label for="floatingName">Cours Name</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-floating">
-                                                            <textarea class="form-control" placeholder="Address"
-                                                                id="floatingTextarea" style="height: 100px;">
-                                            Ut in ea error laudantium quas o totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
-                                          </textarea>
-                                                            <label for="floatingTextarea">Cours Description</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-floating">
-                                                            <textarea class="form-control" placeholder="Address"
-                                                                id="floatingTextarea" style="height: 300px;">
-                                          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo dolor blanditiis sit totam veniam ex 
-                                          obcaecati aut saepe, eius ut, asperiores quaerat, magni vel iusto sapiente expedita voluptate quidem officia!
-                                          </textarea>
-                                                            <label for="floatingTextarea">Cours Content</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                                        <button type="reset" class="btn btn-secondary">Reset</button>
-                                                    </div>
-                                                </form><!-- End floating Labels Form -->
-
-                                            </div>
+                                <!-- Floating Labels Form -->
+                                <!-- Floating Labels Form -->
+                                <form class="row g-3" method="POST" action="cours.php">
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
+                                            <input type="text" name="cours_name" class="form-control" id="floatingName" placeholder="Your Name">
+                                            <label for="floatingName">Cours Name</label>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                              <textarea class="form-control" name="description" placeholder="Address" id="floatingTextarea" style="height: 100px;">
+                                              </textarea>
+                                            <label for="floatingTextarea">Cours Description</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" name="addcours" class="btn btn-primary">Add course</button>
+                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Reset</button>
+                                    </div>
+                                </form><!-- End floating Labels Form -->
+
+
                             </div>
                         </div>
                         <a class="btn btn-danger">Delete</a>
@@ -483,30 +519,32 @@
                 </div>
             </div>
 
-        </section>
-    </main>
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-        <div class="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
         </div>
-        <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
-    </footer>
-    <!-- Vendor JS Files -->
-    <div class="script">
-        <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/vendor/chart.js/chart.umd.js"></script>
-        <script src="assets/vendor/echarts/echarts.min.js"></script>
-        <script src="assets/vendor/quill/quill.min.js"></script>
-        <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-        <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-        <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    </section>
+  </main>
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
     </div>
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <div class="credits">
+     Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer>
+  <!-- Vendor JS Files -->
+  <div class="script">
+    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="assets/vendor/echarts/echarts.min.js"></script>
+    <script src="assets/vendor/quill/quill.min.js"></script>
+    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>  
+  </div>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
 
 </body>
 

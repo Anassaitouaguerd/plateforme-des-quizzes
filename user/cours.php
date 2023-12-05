@@ -55,11 +55,13 @@ require "../connection.php";
                             <?php
               if(isset($_SESSION['id_user'])){
               ?>
+
                             <li class="scroll-to-section"><a href="cours.php" class="active">Cours</a></li>
                             <li class="scroll-to-section"><a href="quizze.php">Quizzes</a></li>
                             <?php } ?>
                             <li class="scroll-to-section"><a href="index.php">Contact</a></li>
                             <?php 
+
               if(isset($_SESSION['id_user'])){
               ?>
                             <li class="scroll-to-section">
@@ -73,6 +75,7 @@ require "../connection.php";
                             </li>
                             <?php
               } ?>
+
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -81,6 +84,7 @@ require "../connection.php";
                     </nav>
                 </div>
             </div>
+
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
