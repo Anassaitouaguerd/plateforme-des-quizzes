@@ -324,9 +324,9 @@ require '../connection.php';?>
     <div class="allCours d-flex gap-5" style="flex-wrap: wrap;">
       <div class="card " style="max-width: 45%; min-width: 45%;">
           <div class="card-header">cours</div>
-          <div class="card-body">
+          <div class="card-body allCours d-flex gap-5" style="flex-wrap: wrap;" >
               <h5 class="card-title"><?php echo $row['courseName'] ?></h5>
-              <?php echo $row['courseDescription']; ?>
+              <p><?php echo $row['courseDescription']; ?></p>
           </div>
           <a href="QuesRepo_detail.php?idcours=<?php echo $row['courseID'] ?>" class="btn btn-success">Gestion des Questions & Réponses</a>
       </div>

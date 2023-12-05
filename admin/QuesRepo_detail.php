@@ -348,23 +348,23 @@ $row = mysqli_fetch_array($querycoursconn); }
                           <form class="row g-3" method = "POST" action = "scriptQuestion.php">
                             <div class="col-12">
                               <label for="inputNanme4" class="form-label">Question</label>
-                              <input type="text" name = "question" class="form-control">
+                              <input type="text" name = "question" class="form-control" required>
                             </div>
                             <div class="col-12">
                               <label for="inputEmail4" class="form-label">Reponse 1</label>
-                              <input type = "text" name = "reponce[]" class="form-control">
+                              <input type = "text" name = "reponce[]" class="form-control" required>
                             </div>
                             <div class="col-12">
                               <label for="inputPassword4" class="form-label">Reponse 2</label>
-                              <input type = "text" name = "reponce[]" class="form-control">
+                              <input type = "text" name = "reponce[]" class="form-control" required>
                             </div>
                             <div class="col-12">
                               <label for="inputAddress" class="form-label">Reponse 3</label>
-                              <input type = "text" name = "reponce[]" class="form-control">
+                              <input type = "text" name = "reponce[]" class="form-control" required>
                             </div>
                             <div class="col-12">
                                 <label for="inputAddress" class="form-label">Reponse 4</label>
-                                <input type = "text" name = "reponce[]" class="form-control">
+                                <input type = "text" name = "reponce[]" class="form-control" required>
                             </div>
                             <div class="col-12">
                                 <label for="inputAddress" class="form-label">Reponse Vrai</label>
@@ -457,7 +457,7 @@ $row = mysqli_fetch_array($querycoursconn); }
                                                 ?>
                                                 <div class="col-12">
                                                     <label for="inputEmail4" class="form-label">Reponse</label>
-                                                    <input type="text" name="reponce[]" class="form-control" value="<?= $answerText ?>">
+                                                    <input type="text" name="reponce[]" class="form-control" value="<?= $answerText ?>" required>
                                                     <input type="hidden" name="idreponce[]" class="form-control" value="<?= $answerid ?>">
                                                 </div>
                                             <?php } ?>
