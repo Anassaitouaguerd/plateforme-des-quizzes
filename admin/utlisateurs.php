@@ -43,7 +43,7 @@
 
 <body>
 
-    <!-- ======= Header ======= -->
+     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
@@ -324,15 +324,6 @@
             </li>
    </aside>
 
-
-    <main id="main" class="main">
-
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-
-      </ul>
-    </nav><!-- End Icons Navigation -->
-
   </header>
 
   <!-- ======= Sidebar ======= -->
@@ -379,61 +370,7 @@
         </ol>
       </nav>
     </div>
-    <section class="section dashboard">
-<!--Content  ------------------------------------------------>
-    <button type="submit"  class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#adduser" >Ajoute une Utilisateur </button>
-    <div class="modal fade" id="adduser" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Vertically Centered</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="card">
-                      <div class="card-body">
-                      <h5 class="card-title">Utlisateur Information</h5>
-              
-                      <!-- Floating Labels Form -->
-                      <form class="row g-3">
-                          <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" placeholder="Your Name">
-                                <label for="floatingName">Nom Utlisateur</label>
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="email" class="form-control" id="floatingName" placeholder="Your Name">
-                                <label for="floatingName">Email</label>
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <label for="floatingName">Role Utlisateur</label>
-                            <select name="" class="form-control" id="">
-                              <option value="0">Administrateur</option>
-                              <option value="1">Utlisateur</option>
-                            </select>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" placeholder="Your Name">
-                                <label for="floatingName">Mote de pass</label>
-                            </div>
-                          </div>
-                         
-                          <div class="text-center">
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                          <button type="reset" class="btn btn-secondary">Reset</button>
-                          </div>
-                      </form><!-- End floating Labels Form -->
-              
-                      </div>
-                  </div> 
-                </div>
-            </div>
-
-        </div>
+  
         <section class="section dashboard">
             <!--Content  ------------------------------------------------>
             <button type="submit" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#adduser">Ajoute
