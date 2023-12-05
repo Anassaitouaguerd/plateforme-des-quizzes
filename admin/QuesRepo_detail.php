@@ -1,3 +1,5 @@
+<?php
+require '../connection.php';?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +27,7 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -43,7 +46,7 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">NiceAdmin</span>
       </a>
@@ -224,7 +227,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -234,7 +237,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -244,7 +247,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.php">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -274,25 +277,25 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Statistiques  </span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="cours.html">
+        <a class="nav-link collapsed" href="cours.php">
           <i class="bi bi-grid"></i>
           <span>Gestion des Cours</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="QuesRepo.html">
+        <a class="nav-link " href="QuesRepo.php">
           <i class="bi bi-grid"></i>
           <span>Questions & Réponses </span>
         </a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link collapsed" href="utlisateurs.html">
+        <a class="nav-link collapsed" href="utlisateurs.php">
           <i class="bi bi-grid"></i>
           <span>Gestion des Utilisateurs </span>
         </a>
@@ -307,24 +310,28 @@
       <h1>Accueil</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
           <li class="breadcrumb-item active">Gestion des Questions & Réponses </li>
         </ol>
       </nav>
     </div>
     <section class="section dashboard">
 <!--Content  ------------------------------------------------>
+<?php
+if(isset($_GET['idcours'])){ 
+$idcours = $_GET['idcours'];
+$querycours = "SELECT * FROM course where courseID = '$idcours';";
+$querycoursconn = mysqli_query($conn,$querycours);
+$row = mysqli_fetch_array($querycoursconn); }
+?>
     <div class="card " >
-        <div class="card-header">Header</div>
+        <div class="card-header">cours</div>
         <div class="card-body">
-            <h5 class="card-title">Card with header and footer</h5>
-            Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-            Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-            Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
+            <h5 class="card-title"><?php echo $row['courseName']; ?></h5>
+            <?php echo $row['courseDescription'];?>
         </div>
     </div>
-    <button type="button" class="btn btn-primary mb-3"  data-bs-toggle="modal" data-bs-target="#addQuestion">Ajoute un Questions </button>
-
+    <button type="button" class="btn btn-primary mb-3 margin-left"  data-bs-toggle="modal" data-bs-target="#addQuestion">Ajouter des Questions </button>
     <div class="modal fade" id="addQuestion" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -338,58 +345,66 @@
                           <h5 class="card-title">Vertical Form</h5>
             
                           <!-- Vertical Form -->
-                          <form class="row g-3">
+                          <form class="row g-3" method = "POST" action = "scriptQuestion.php">
                             <div class="col-12">
                               <label for="inputNanme4" class="form-label">Question</label>
-                              <input type="text" class="form-control" id="inputNanme4">
+                              <input type="text" name = "question" class="form-control">
                             </div>
                             <div class="col-12">
                               <label for="inputEmail4" class="form-label">Reponse 1</label>
-                              <input type="text" class="form-control" id="inputEmail4">
+                              <input type = "text" name = "reponce[]" class="form-control">
                             </div>
                             <div class="col-12">
                               <label for="inputPassword4" class="form-label">Reponse 2</label>
-                              <input type="text" class="form-control" id="inputPassword4">
+                              <input type = "text" name = "reponce[]" class="form-control">
                             </div>
                             <div class="col-12">
                               <label for="inputAddress" class="form-label">Reponse 3</label>
-                              <input type="text" class="form-control" id="inputAddress">
+                              <input type = "text" name = "reponce[]" class="form-control">
                             </div>
                             <div class="col-12">
                                 <label for="inputAddress" class="form-label">Reponse 4</label>
-                                <input type="text" class="form-control" id="inputAddress">
+                                <input type = "text" name = "reponce[]" class="form-control">
                             </div>
                             <div class="col-12">
                                 <label for="inputAddress" class="form-label">Reponse Vrai</label>
                                 <div class="d-flex gap-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                        <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="0" checked="">
                                         <label class="form-check-label" for="gridRadios1">
                                          1
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                        <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="1" checked="">
                                         <label class="form-check-label" for="gridRadios1">
                                          2
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                        <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="2" checked="">
                                         <label class="form-check-label" for="gridRadios1">
-                                         1
+                                         3
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                        <input class="form-check-input" type="radio" name="vrai" id="gridRadios1" value="3" checked="">
                                         <label class="form-check-label" for="gridRadios1">
-                                         2
+                                         4
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="text-center">
-                              <button type="submit" class="btn btn-primary">Submit</button>
+                              <?php
+                              $queryquiz = "SELECT * FROM course natural join quiz where courseID = '$idcours'";
+                              $queryquizconn = mysqli_query($conn,$queryquiz);
+                              $result = mysqli_fetch_array($queryquizconn);
+                              $idquiz = $result['quizID'];
+                              ?>
+                              <input type="hidden" name = "idquiz" value = "<?= $idquiz; ?>">
+                              <input type="hidden" name = "idcours" value = "<?= $idcours; ?>">
+                              <button type="submit" name = "submitquestion" class="btn btn-primary">Submit</button>
                               <button type="reset" class="btn btn-secondary">Reset</button>
                             </div>
                           </form>
@@ -398,18 +413,111 @@
                 </div>
             </div>
         </div>
+        
     </div>
+    <?php
+    $query = "SELECT * FROM question where quizID = $idquiz";
+    $queryconn = mysqli_query($conn, $query);
+
+    while ($row = mysqli_fetch_array($queryconn)) {
+    $questionID = $row['questionID'];
+    $questionText = $row['questionText'];
+    ?>
     <div class="card">
         <div class="card-body">
-        <h5 class="card-title">Numbered</h5>
-        <ol class="list-group list-group-numbered">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Cras justo odio</li>
-        </ol>
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title"><?php echo $questionText ?></h5>
+                <div class="d-flex align-items-center">
+                  <a href="#editQuestion<?php echo $questionID?>" class="edit" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                  <div class="modal fade" id="editQuestion<?php echo $questionID?>" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Vertically Centered</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Vertical Form</h5>
+
+                                        <!-- Vertical Form -->
+                                        <form class="row g-3" method="POST" action="scriptQuestion.php">
+                                            <div class="col-12">
+                                                <label for="inputNanme4" class="form-label">Question</label>
+                                                <input type="text" name="question" class="form-control" value="<?= $questionText ?>">
+                                            </div>
+                                            <?php
+                                            $answerQuery = "SELECT * FROM answer WHERE questionID = $questionID";
+                                            $answerQueryConn = mysqli_query($conn, $answerQuery);
+                                            while ($answerRow = mysqli_fetch_array($answerQueryConn)) {
+                                                $answerText = $answerRow['answerText'];
+                                                $answerid = $answerRow['answerID'];
+                                                $isCorrect = $answerRow['IsCorrect'];
+                                                ?>
+                                                <div class="col-12">
+                                                    <label for="inputEmail4" class="form-label">Reponse</label>
+                                                    <input type="text" name="reponce[]" class="form-control" value="<?= $answerText ?>">
+                                                    <input type="hidden" name="idreponce[]" class="form-control" value="<?= $answerid ?>">
+                                                </div>
+                                            <?php } ?>
+                                            <div class="col-12">
+                                                <label for="inputAddress" class="form-label">Reponse Vrai</label>
+                                                <div class="d-flex gap-3">
+                                                    <?php
+                                                    $answerQueryConn = mysqli_query($conn, $answerQuery);
+                                                    $index = 0;
+                                                    while ($answerRow = mysqli_fetch_array($answerQueryConn)) {
+                                                        $isChecked = $answerRow['IsCorrect'] ? 'checked' : '';
+                                                        ?>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="vrai" id="gridRadios<?= $index ?>" value="<?= $index ?>" <?= $isChecked ?>>
+                                                            <label class="form-check-label" for="gridRadios<?= $index ?>">
+                                                                <?= $index + 1 ?>
+                                                            </label>
+                                                        </div>
+                                                        <?php
+                                                        $index++;
+                                                    } ?>
+                                                </div>
+                                            </div>
+
+                            <div class="text-center">
+                                <input type="hidden" name="questionID" value="<?= $questionID ?>">
+                                <input type="hidden" name="idcours" value="<?= $idcours ?>">
+                                <button type="submit" name="editquestion" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+
+							    <a href="scriptQuestion.php?deleteQuestionID=<?php echo $questionID?>&coursid=<?php echo $idcours?>" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                </div>
+              </div>
+            <ol class="list-group list-group-numbered">
+                <?php
+                $answerQuery = "SELECT * FROM answer WHERE questionID = $questionID";
+                $answerQueryConn = mysqli_query($conn, $answerQuery);
+                while ($answerRow = mysqli_fetch_array($answerQueryConn)) {
+                    $answerText = $answerRow['answerText'];
+                    $isCorrect = $answerRow['IsCorrect'];
+                ?>
+                    <li class="list-group-item <?php echo $isCorrect ? 'text-primary' : ''; ?>">
+                        <?php echo $answerText ?>
+                    </li>
+                <?php } ?>
+            </ol>
+        </div>
+    </div>
+    <?php } ?>
+</section>
+
     </section>
   </main>
   <!-- ======= Footer ======= -->

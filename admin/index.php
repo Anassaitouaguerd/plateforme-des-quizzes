@@ -1,10 +1,11 @@
 <?php
+require '../connection.php';
 session_start();
 if(!isset($_SESSION['id_user'])){
   header('location: ../admin/login.php'); 
 }else if($_SESSION['roleUser']=="etudiants"){
-  header('location: ../user/index.php'); 
-}
+   header('location: ../user/index.php'); 
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,11 +33,9 @@ if(!isset($_SESSION['id_user'])){
   <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
-  <!-- Template Main CSS File -->
+1<!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
@@ -53,7 +52,7 @@ if(!isset($_SESSION['id_user'])){
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">NiceAdmin</span>
       </a>
@@ -234,7 +233,7 @@ if(!isset($_SESSION['id_user'])){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -244,7 +243,7 @@ if(!isset($_SESSION['id_user'])){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -254,7 +253,7 @@ if(!isset($_SESSION['id_user'])){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.php">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -284,25 +283,25 @@ if(!isset($_SESSION['id_user'])){
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="index.php">
           <i class="bi bi-grid"></i>
           <span>Statistiques  </span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="cours.html">
+        <a class="nav-link collapsed" href="cours.php">
           <i class="bi bi-grid"></i>
           <span>Gestion des Cours</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="QuesRepo.html">
+        <a class="nav-link collapsed" href="QuesRepo.php">
           <i class="bi bi-grid"></i>
           <span>Questions & Réponses </span>
         </a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link collapsed" href="utlisateurs.html">
+        <a class="nav-link collapsed" href="utlisateurs.php">
           <i class="bi bi-grid"></i>
           <span>Gestion des Utilisateurs </span>
         </a>
@@ -314,131 +313,20 @@ if(!isset($_SESSION['id_user'])){
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Accueil</h1>
+      <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+
+          <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
           <li class="breadcrumb-item active">Statistiques</li>
         </ol>
       </nav>
     </div>
     <section class="section dashboard">
 <!--Content  ------------------------------------------------>
-   
-  
-     <!-- Your chart canvas goes here -->
-     <div style="width: 400px;">
-    <canvas id="lineChart"></canvas>
-  </div>
-
-  <!-- Card for Statistics -->
-  <div>
-    <div class="card">
-      <h2>Total Revenue</h2>
-      <p>$500,000</p>
-    </div>
-  </div>
-
-  <script>
-    // Line Chart Data
-    var lineChartData = {
-      labels: ['January', 'February', 'March', 'April', 'May'],
-      datasets: [{
-        label: 'Monthly Revenue',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 2,
-        data: [50000, 70000, 90000, 120000, 150000]
-      }]
-    };
-
-    // Line Chart Configuration
-    var lineChartOptions = {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    };
-
-    var lineCtx = document.getElementById('lineChart').getContext('2d');
-    var lineChart = new Chart(lineCtx, {
-      type: 'line',
-      data: lineChartData,
-      options: lineChartOptions
-    });
-  </script>
-  <div style="width: 400px;">
-  <canvas id="barChart"></canvas>
-</div>
-
-<!-- Card for Statistics -->
-<div>
-  <div class="card">
-    <h2>Monthly Sales</h2>
-    <p>1200 units</p>
-  </div>
-</div>
-
-<script>
-  // Bar Chart Data
-  var barChartData = {
-    labels: ['Product A', 'Product B', 'Product C', 'Product D', 'Product E'],
-    datasets: [{
-      label: 'Sales',
-      backgroundColor: 'rgba(75, 192, 192, 0.8)',
-      borderWidth: 1,
-      data: [300, 200, 150, 250, 300]
-    }]
-  };
-
-  // Bar Chart Configuration
-  var barChartOptions = {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  };
-
-  var barCtx = document.getElementById('barChart').getContext('2d');
-  var barChart = new Chart(barCtx, {
-    type: 'bar',
-    data: barChartData,
-    options: barChartOptions
-  });
-</script>
-<div style="width: 400px;">
-  <canvas id="doughnutChart"></canvas>
-</div>
-
-<!-- Card for Statistics -->
-<div>
-  <div class="card">
-    <h2>Market Share</h2>
-    <p>25%</p>
-  </div>
-</div>
-
-<script>
-  // Doughnut Chart Data
-  var doughnutChartData = {
-    labels: ['Product A', 'Product B', 'Product C'],
-    datasets: [{
-      data: [30, 40, 30],
-      backgroundColor: ['rgba(255, 99, 132, 0.8)', 'rgba(54, 162, 235, 0.8)', 'rgba(255, 205, 86, 0.8)'],
-    }]
-  };
-
-  var doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
-  var doughnutChart = new Chart(doughnutCtx, {
-    type: 'doughnut',
-    data: doughnutChartData
-  });
-</script>
-   
-
     </section>
   </main>
+
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">

@@ -31,6 +31,7 @@ for ($i = 1; $i <= count($_POST) / 2; $i++) {
         $displayedQuestions[] = $question_id;
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -188,3 +189,4 @@ for ($i = 1; $i <= count($_POST) / 2; $i++) {
 </body>
 
 </html>
+
