@@ -4,6 +4,7 @@ require '../connection.php';?>
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -33,6 +34,7 @@ require '../connection.php';?>
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
+
   * Template Name: NiceAdmin
   * Updated: Nov 17 2023 with Bootstrap v5.3.2
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -42,6 +44,7 @@ require '../connection.php';?>
 </head>
 
 <body>
+
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -200,31 +203,27 @@ require '../connection.php';?>
             </li>
             <li>
               <hr class="dropdown-divider">
+
             </li>
-
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="cours.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Gestion des Cours</span>
+                </a>
             </li>
-
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
-
-        <li class="nav-item dropdown pe-3">
-
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-          </a><!-- End Profile Iamge Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+            <li class="nav-item">
+                <a class="nav-link " href="QuesRepo.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Questions & Réponses </span>
+                </a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
+            <li class="nav-item ">
+                <a class="nav-link collapsed" href="utlisateurs.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Gestion des Utilisateurs </span>
+                </a>
             </li>
+        </ul>
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
@@ -408,11 +407,30 @@ $row = mysqli_fetch_array($querycoursconn); }
                               <button type="reset" class="btn btn-secondary">Reset</button>
                             </div>
                           </form>
+
                         </div>
-                    </div>    
+                    </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Numbered</h5>
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Cras justo odio</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
         </div>
+
         
     </div>
     <?php
@@ -513,8 +531,21 @@ $row = mysqli_fetch_array($querycoursconn); }
                     </li>
                 <?php } ?>
             </ol>
+
         </div>
+    </footer>
+    <!-- Vendor JS Files -->
+    <div class="script">
+        <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/chart.js/chart.umd.js"></script>
+        <script src="assets/vendor/echarts/echarts.min.js"></script>
+        <script src="assets/vendor/quill/quill.min.js"></script>
+        <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+        <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
     </div>
+
     <?php } ?>
 </section>
 
@@ -542,6 +573,7 @@ $row = mysqli_fetch_array($querycoursconn); }
   </div>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
 
 </body>
 

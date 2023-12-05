@@ -4,13 +4,16 @@ session_start();
 if(!isset($_SESSION['id_user'])){
   header('location: ../admin/login.php'); 
 }else if($_SESSION['roleUser']=="etudiants"){
+
    header('location: ../user/index.php'); 
  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -39,6 +42,7 @@ if(!isset($_SESSION['id_user'])){
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
+
   * Template Name: NiceAdmin
   * Updated: Nov 17 2023 with Bootstrap v5.3.2
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -48,6 +52,7 @@ if(!isset($_SESSION['id_user'])){
 </head>
 
 <body>
+
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -86,112 +91,25 @@ if(!isset($_SESSION['id_user'])){
             <li class="dropdown-header">
               You have 4 new notifications
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
 
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
             </li>
-
-            <li>
-              <hr class="dropdown-divider">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="cours.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Gestion des Cours</span>
+                </a>
             </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="QuesRepo.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Questions & Réponses </span>
+                </a>
             </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
+            <li class="nav-item ">
+                <a class="nav-link collapsed" href="utlisateurs.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Gestion des Utilisateurs </span>
+                </a>
             </li>
 
             <li class="message-item">
@@ -334,21 +252,10 @@ if(!isset($_SESSION['id_user'])){
     </div>
     <div class="credits">
      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+
     </div>
-  </footer>
-  <!-- Vendor JS Files -->
-  <div class="script">
-    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="assets/vendor/echarts/echarts.min.js"></script>
-    <script src="assets/vendor/quill/quill.min.js"></script>
-    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>  
-  </div>
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
 
 </body>
 
