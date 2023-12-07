@@ -45,15 +45,18 @@ require "../connection.php";
         </div>
     </div>
     <!-- ***** Header Area Start ***** -->
+
     <?php include('./header.php')?>
     <!-- ***** Header Area End ***** -->
     <section>
         <div id="contact" class="contact-us section">
+
             <div class="image" style="width: 100%; height: 300px; overflow: hidden; ">
                 <img src="assets/images/blog-post-01.jpg" alt="">
             </div>
             <div class="container mt-5">
                 <?php
+
                 if (isset($_GET['id_course'])) {
                     $id_course = $_GET['id_course'];
                     $SQL_DISCRIPTION_COURSE = "SELECT * FROM course WHERE courseID = $id_course";
@@ -88,6 +91,7 @@ require "../connection.php";
 <script src="assets/js/animation.js"></script>
 <script src="assets/js/imagesloaded.js"></script>
 <script src="assets/js/custom.js"></script>
+
 
 
 

@@ -62,29 +62,30 @@ require "../connection.php";
                 </div>
             </div>
         </form>
-        <?php  
+
+        <div id="contact" class="section row">
+            <div class="container mt-5 row">
+                <?php  
           
-          $SQL_AFFICHER_COURSE = "SELECT * FROM course";
-          $result_afficher_course = mysqli_query($conn,$SQL_AFFICHER_COURSE);
-          
-            foreach($result_afficher_course as $rows){
-                
-         ?>
-        <div id="contact<?php echo $rows['courseID'] ;?>" class="section row">
-            <div class="container col-lg-5 mt-5">
-                <div class="cours">
+                    $SQL_AFFICHER_COURSE = "SELECT * FROM course";
+                    $result_afficher_course = mysqli_query($conn,$SQL_AFFICHER_COURSE);
+
+                    foreach($result_afficher_course as $rows){
+              
+                ?>
+                <div class="cours<?php echo $rows['courseID'] ;?> col-lg-5 px-4 ">
                     <div class="cours_header"><?php echo $rows['courseName'] ?> </div>
                     <div class="cours_body"></div>
                     <div class="cours_footer"><a
                             href="cours_detail.php?id_course=<?php echo $rows['courseID'];?>">Commencer Cours</a></div>
                 </div>
+
+
+                <?php
+                    }
+                ?>
             </div>
         </div>
-
-        </div>
-        <?php
-        }
-        ?>
     </section>
     <!-- Scripts -->
     <script src="vendor/jquery/jquery.min.js"></script>
