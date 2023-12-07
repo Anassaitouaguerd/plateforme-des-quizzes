@@ -349,7 +349,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <label for="floatingName">Role Utlisateur</label>
-                                            <select name="role_user" class="form-control" id="">
+                                            <select name="role_user" class="form-control form-select" id="">
                                                 <option value="etudiants">etudiants</option>
                                                 <option value="admin">Admin</option>
                                             </select>

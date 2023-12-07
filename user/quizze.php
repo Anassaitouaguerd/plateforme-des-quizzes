@@ -1,4 +1,3 @@
-
 <?php
 require_once "../connection.php";
 if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']=="admin"){
@@ -42,31 +41,31 @@ if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']=="admin"){
         </div>
     </div>
 
-  </div>
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <nav class="main-nav">
-            <!-- ***** Logo Start ***** -->
-            <a href="index.php" class="logo">
-              <img src="assets/images/logo-v3.png" alt="">
-            </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
-            <ul class="nav">
-              <li class="scroll-to-section"><a href="index.php">Accueil</a></li>
-              <li class="scroll-to-section"><a href="index.php">suivre à l'avance</a></li>
-              <li class="scroll-to-section"><a href="index.php">Services</a></li>
-              <?php 
+    </div>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.php" class="logo">
+                            <img src="assets/images/logo-v3.png" alt="">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="index.php">Accueil</a></li>
+                            <li class="scroll-to-section"><a href="index.php">suivre à l'avance</a></li>
+                            <li class="scroll-to-section"><a href="index.php">Services</a></li>
+                            <?php 
               if(isset($_SESSION['id_user'])){
               ?>
-              <li class="scroll-to-section"><a href="cours.php">Cours</a></li>
-              <li class="scroll-to-section"><a href="quizze.php" class="active">Quizzes</a></li>
-              <?php } ?>
-              <li class="scroll-to-section"><a href="index.php">Contact</a></li> 
-              <?php 
+                            <li class="scroll-to-section"><a href="cours.php">Cours</a></li>
+                            <li class="scroll-to-section"><a href="quizze.php" class="active">Quizzes</a></li>
+                            <?php } ?>
+                            <li class="scroll-to-section"><a href="index.php">Contact</a></li>
+                            <?php 
 
               if(isset($_SESSION['id_user'])){
               ?>
@@ -82,42 +81,43 @@ if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']=="admin"){
                             <?php
               } ?>
 
-            </ul>        
-            <a class='menu-trigger'>
-                <span>Menu</span>
-            </a>
-            <!-- ***** Menu End ***** -->
-          </nav>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
-  <section>
-    
-    <div id="contact" class="contact-us section row" >
-      <?php
+    </header>
+    <section>
+        <div id="contact" class="contact-us section row">
+            <?php
       $select_cours = "SELECT * FROM course";
       $cours=$conn->query($select_cours);
       while($cour=$cours->fetch_assoc()){
       $id_cours=$cour["courseID"];
       ?>
-      <div class="container col-lg-5 mt-5">
-        <div class="cours">
-          <div class="cours_header"><?=$cour["courseName"]?></div>
-          <div class="cours_body coursse" style='height:160px; overflow: scroll;'><?=$cour["courseDescription"]?></div>
-          <div class="cours_footer"><a href="quizze_details.php?id_cours=<?=$id_cours?>">Commencer Quizze</a></div>
-        </div>
-      </div>
-      <?php
+            <div class="container col-lg-5 mt-5">
+                <div class="cours">
+                    <div class="cours_header"><?=$cour["courseName"]?></div>
+                    <div class="cours_body coursse" style='height:160px; overflow: scroll;'>
+                        <?=$cour["courseDescription"]?></div>
+                    <div class="cours_footer"><a href="quizze_details.php?id_cours=<?=$id_cours?>">Commencer Quizze</a>
+                    </div>
+                </div>
+            </div>
+            <?php
       }
       ?>
-    </div>
-  </section>
-  <style>
+        </div>
+    </section>
+    <style>
     .coursse::-webkit-scrollbar {
-      display: none;
+        display: none;
     }
-  </style>
+    </style>
 
 
     <!-- Scripts -->
