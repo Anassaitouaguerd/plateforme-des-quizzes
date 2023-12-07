@@ -55,13 +55,11 @@ require "../connection.php";
                             <?php
               if(isset($_SESSION['id_user'])){
               ?>
-
                             <li class="scroll-to-section"><a href="cours.php" class="active">Cours</a></li>
                             <li class="scroll-to-section"><a href="quizze.php">Quizzes</a></li>
                             <?php } ?>
                             <li class="scroll-to-section"><a href="index.php">Contact</a></li>
                             <?php 
-
               if(isset($_SESSION['id_user'])){
               ?>
                             <li class="scroll-to-section">
@@ -75,7 +73,6 @@ require "../connection.php";
                             </li>
                             <?php
               } ?>
-
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -84,7 +81,6 @@ require "../connection.php";
                     </nav>
                 </div>
             </div>
-
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
@@ -109,30 +105,50 @@ require "../connection.php";
                 </div>
             </div>
         </form>
+        <?php
+if (isset($_POST['searche_course']) OR isset($_POST['searche_quize'])) {
+    $searching = $_POST['searching'];
+    
+    $SQL_SEARCHING = "SELECT * FROM course WHERE courseName LIKE '$searching%'";
+    $result_searching = mysqli_query($conn, $SQL_SEARCHING);
 
-        <div id="contact" class="section row">
-            <div class="container mt-5 row">
-                <?php  
-          
-                    $SQL_AFFICHER_COURSE = "SELECT * FROM course";
-                    $result_afficher_course = mysqli_query($conn,$SQL_AFFICHER_COURSE);
-
-                    foreach($result_afficher_course as $rows){
-              
+    if ($result_searching) { 
+        if (mysqli_num_rows($result_searching) > 0) {
+            foreach($result_searching as $rows){
                 ?>
-                <div class="cours<?php echo $rows['courseID'] ;?> col-lg-5 px-4 ">
-                    <div class="cours_header"><?php echo $rows['courseName'] ?> </div>
+        <div id="contact<?php echo $rows['courseID']; ?>" class="section row">
+            <div class="container col-lg-5 mt-5">
+                <div class="cours">
+                    <div class="cours_header"><?php echo $rows['courseName']; ?> </div>
                     <div class="cours_body"></div>
-                    <div class="cours_footer"><a
-                            href="cours_detail.php?id_course=<?php echo $rows['courseID'];?>">Commencer Cours</a></div>
+                    <div class="cours_footer">
+
+                        <?php if(isset($_POST['searche_course'])){ ?>
+                        <a href="cours_detail.php?id_course=<?php echo $rows['courseID']; ?>">
+                            Commencer Cours
+                        </a>
+                        <?php } else if(isset($_POST['searche_quize'])){ ?>
+                        <a href="quizze_details.php?id_course=<?php echo $rows['courseID']; ?>">
+                            Commencer quizze
+                        </a>
+                        <?php }?>
+                    </div>
                 </div>
-
-
-                <?php
-                    }
-                ?>
             </div>
         </div>
+        <?php 
+ }
+        } else {
+            ?>
+        <div class="container">
+            <p>Rien n'a été trouvé</p>
+        </div>
+        <?php
+        }
+    } 
+}
+?>
+
     </section>
     <!-- Scripts -->
     <script src="vendor/jquery/jquery.min.js"></script>
