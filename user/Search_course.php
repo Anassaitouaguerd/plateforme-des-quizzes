@@ -1,12 +1,5 @@
-
 <?php
-session_start();
-$quizz="ok";
-require_once "../connection.php";
-if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']=="admin"){
-  header('location: ../admin/index.php'); 
-}
-
+require "../connection.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,38 +36,75 @@ if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']=="admin"){
             </div>
         </div>
     </div>
-
-  </div>
-  <!-- ***** Header Area Start ***** -->
-  <?php include('header.php')?>
-  <section>
+    <!-- ***** Header Area Start ***** -->
+    <?php include('./header.php')?>
+    <!-- ***** Header Area End ***** -->
+    <section>
+        <form action="Search_course.php" method="POST">
+            <div class="container">
+                <div class="row height d-flex justify-content-center align-items-center">
+                    <div class="col-md-6">
+                        <div class="form d-flex  ">
+                            <i class="fa fa-search"></i>
+                            <input type="text" name="searching" class="form-control form-input search_course"
+                                placeholder="Search anything...">
+                            <button class="left-pan bt_searche" type="submit" name="searche_course">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <?php
+if (isset($_POST['searche_course']) OR isset($_POST['searche_quize'])) {
+    $searching = $_POST['searching'];
     
-    <div id="contact" class="contact-us section row" >
-      <?php
-      $select_cours = "SELECT * FROM course";
-      $cours=$conn->query($select_cours);
-      while($cour=$cours->fetch_assoc()){
-      $id_cours=$cour["courseID"];
-      ?>
-      <div class="container col-lg-5 mt-5">
-        <div class="cours">
-          <div class="cours_header"><?=$cour["courseName"]?></div>
-          <div class="cours_body coursse" style='height:160px; overflow: scroll;'><?=$cour["courseDescription"]?></div>
-          <div class="cours_footer"><a href="quizze_details.php?id_cours=<?=$id_cours?>">Commencer Quizze</a></div>
+    $SQL_SEARCHING = "SELECT * FROM course WHERE courseName LIKE '$searching%'";
+    $result_searching = mysqli_query($conn, $SQL_SEARCHING);
+
+    if ($result_searching) { 
+        if (mysqli_num_rows($result_searching) > 0) {
+            foreach($result_searching as $rows){
+                ?>
+        <div id="contact<?php echo $rows['courseID']; ?>" class="section row">
+            <div class="container col-lg-5 mt-5">
+                <div class="cours">
+                    <div class="cours_header"><?php echo $rows['courseName']; ?> </div>
+                    <div class="cours_body"></div>
+                    <div class="cours_footer">
+
+                        <?php if(isset($_POST['searche_course'])){ ?>
+                        <a href="cours_detail.php?id_course=<?php echo $rows['courseID']; ?>">
+                            Commencer Cours
+                        </a>
+                        <?php } else if(isset($_POST['searche_quize'])){ ?>
+                        <a href="quizze_details.php?id_course=<?php echo $rows['courseID']; ?>">
+                            Commencer quizze
+                        </a>
+                        <?php }?>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <?php
-      }
-      ?>
-    </div>
-  </section>
-  <style>
-    .coursse::-webkit-scrollbar {
-      display: none;
-    }
-  </style>
+        <?php 
+ }
+        } else {
+            ?>
+        <div class="container">
+            <p>Rien n'a été trouvé</p>
+        </div>
+        <?php
+        }
+    } 
+}
+?>
 
-
+    </section>
     <!-- Scripts -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
