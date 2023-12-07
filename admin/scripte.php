@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../connection.php";
 if(isset($_POST['register_submit'])){
     extract($_POST);
@@ -23,7 +24,7 @@ if(isset($_POST['login_submit'])){
     extract($_POST);
     $pass_hash=MD5($password);
     $sql_search = "SELECT * FROM users WHERE email='$email' AND passwordHash='$pass_hash'";
-
+    
 
     $res=$conn->query($sql_search);
     if($res){
@@ -33,7 +34,7 @@ if(isset($_POST['login_submit'])){
         $_SESSION['id_user']=$user['userID'];
 
         if($user['role']=="etudiants"){
-            header('location:../user/index.php'); 
+            header('location:../user/cours.php'); 
         }
         if($user['role']=="admin"){
 

@@ -109,9 +109,7 @@ for ($i = 1; $i <= count($_POST) / 2; $i++) {
 </head>
 
 <body>
-    <div id="js-preloader" class="js-preloader">
-        <!-- Your preloader content here -->
-    </div>
+<?php include('./header.php')?>
 
     <section class="section mt-5">
         <div class="container">
