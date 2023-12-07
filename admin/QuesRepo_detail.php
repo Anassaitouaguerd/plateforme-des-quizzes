@@ -466,19 +466,16 @@ $row = mysqli_fetch_array($querycoursconn); }
                                                 $answerid = $answerRow['answerID'];
                                                 $isCorrect = $answerRow['IsCorrect'];
                                                 ?>
-                                                        <div class="col-12">
-                                                            <label for="inputEmail4" class="form-label">Reponse</label>
-                                                            <input type="text" name="reponce[]" class="form-control"
-                                                                value="<?= $answerText ?>">
-                                                            <input type="hidden" name="idreponce[]" class="form-control"
-                                                                value="<?= $answerid ?>">
-                                                        </div>
-                                                        <?php } ?>
-                                                        <div class="col-12">
-                                                            <label for="inputAddress" class="form-label">Reponse
-                                                                Vrai</label>
-                                                            <div class="d-flex gap-3">
-                                                                <?php
+                                                <div class="col-12">
+                                                    <label for="inputEmail4" class="form-label">Reponse</label>
+                                                    <input type="text" name="reponce[]" class="form-control" value="<?= $answerText ?>">
+                                                    <input type="hidden" name="idreponce[]" class="form-control" value="<?= $answerid ?>">
+                                                </div>
+                                            <?php } ?>
+                                            <div class="col-12">
+                                                <label for="inputAddress" class="form-label">Reponse Vrai</label>
+                                                <div class="d-flex gap-3">
+                                                    <?php
                                                     $answerQueryConn = mysqli_query($conn, $answerQuery);
                                                     $index = 0;
                                                     while ($answerRow = mysqli_fetch_array($answerQueryConn)) {

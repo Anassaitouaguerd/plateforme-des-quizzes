@@ -317,26 +317,29 @@ require '../connection.php';?>
             </nav>
         </div>
         <section class="section dashboard">
-            <!--Content  ------------------------------------------------>
-            <?php
-    $querycous = "SELECT * FROM course";
-    $querycousconn = mysqli_query($conn, $querycous);
-    while($row = mysqli_fetch_array($querycousconn)){
-    ?>
-            <div class="allCours d-flex gap-5" style="flex-wrap: wrap;">
-                <div class="card " style="max-width: 45%; min-width: 45%;">
-                    <div class="card-header">cours</div>
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $row['courseName'] ?></h5>
-                        <?php echo $row['courseDescription']; ?>
-                    </div>
-                    <a href="QuesRepo_detail.php?idcours=<?php echo $row['courseID'] ?>" class="btn btn-success">Gestion
-                        des Questions & Réponses</a>
-                </div>
-                <?php }?>
+  <!-- Content -->
+  <?php
+  $querycous = "SELECT * FROM course";
+  $querycousconn = mysqli_query($conn, $querycous);
+  ?>
+  <div class="">
+    <h1>Courses</h1>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+      <?php while ($row = mysqli_fetch_array($querycousconn)) { ?>
+        <div class="col course-card">
+          <div class="card">
+            <div class="card-header">Course</div>
+            <div class="card-body">
+              <h5 class="card-title"><?php echo $row['courseName'] ?></h5>
+              <p class="card-text"><?php echo $row['courseDescription']; ?></p>
             </div>
-
-        </section>
+            <a href="QuesRepo_detail.php?idcours=<?php echo $row['courseID'] ?>" class="btn btn-primary">Manage Questions & Answers</a>
+          </div>
+        </div>
+      <?php } ?>
+    </div>
+  </div>
+</section>
     </main>
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
