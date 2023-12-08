@@ -346,7 +346,7 @@ if(!isset($_SESSION['id_user'])){
     </div>
 
     <div class="card-body">
-      <h5 class="card-title">Cours <span>| Today</span></h5>
+      <h5 class="card-title">Cours 
       <?php
       $querycours = "SELECT COUNT(courseID) FROM `course`";
       $querycoursconn = mysqli_query($conn,$querycours);
@@ -358,7 +358,6 @@ if(!isset($_SESSION['id_user'])){
         </div>
         <div class="ps-3">
           <h6><?= $row['COUNT(courseID)']?></h6>
-          <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
         </div>
       </div>
@@ -385,7 +384,7 @@ if(!isset($_SESSION['id_user'])){
     </div>
 
     <div class="card-body">
-      <h5 class="card-title">Questions <span>| This Month</span></h5>
+      <h5 class="card-title">Questions 
       <?php
       $queryquestion = "SELECT COUNT(questionID) FROM `question`";
       $queryquestionconn = mysqli_query($conn,$queryquestion);
@@ -397,7 +396,6 @@ if(!isset($_SESSION['id_user'])){
         </div>
         <div class="ps-3">
           <h6><?= $row['COUNT(questionID)']?></h6>
-          <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
         </div>
       </div>
@@ -424,7 +422,7 @@ if(!isset($_SESSION['id_user'])){
     </div>
 
     <div class="card-body">
-      <h5 class="card-title">Lerners <span>| This Year</span></h5>
+      <h5 class="card-title">Lerners 
       <?php
       $queryusers = "SELECT COUNT(userID) FROM `users`";
       $queryusersconn = mysqli_query($conn,$queryusers);
@@ -436,7 +434,6 @@ if(!isset($_SESSION['id_user'])){
         </div>
         <div class="ps-3">
           <h6><?= $row['COUNT(userID)']?></h6>
-          <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
         </div>
       </div>
@@ -445,44 +442,7 @@ if(!isset($_SESSION['id_user'])){
   </div>
 
 </div><!-- End Customers Card -->
-<!-- Sales Card -->
-<div class="col-xxl-4 col-md-6">
-  <div class="card info-card sales-card">
 
-    <div class="filter">
-      <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-        <li class="dropdown-header text-start">
-          <h6>Filter</h6>
-        </li>
-
-        <li><a class="dropdown-item" href="#">Today</a></li>
-        <li><a class="dropdown-item" href="#">This Month</a></li>
-        <li><a class="dropdown-item" href="#">This Year</a></li>
-      </ul>
-    </div>
-
-    <div class="card-body">
-      <h5 class="card-title">Cours <span>| Today</span></h5>
-      <?php
-      $querycours = "SELECT COUNT(courseID) FROM `course`";
-      $querycoursconn = mysqli_query($conn,$querycours);
-      $row = mysqli_fetch_array($querycoursconn);
-      ?>
-      <div class="d-flex align-items-center">
-        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-        <i class="bi bi-book"></i>
-        </div>
-        <div class="ps-3">
-          <h6><?= $row['COUNT(courseID)']?></h6>
-          <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div><!-- End Sales Card -->
 <!-- Revenue Card -->
 <div class="col-xxl-4 col-md-6">
   <div class="card info-card revenue-card">
@@ -501,7 +461,7 @@ if(!isset($_SESSION['id_user'])){
     </div>
 
     <div class="card-body">
-      <h5 class="card-title">Result Quiz Avrege Score <span>| This Month</span></h5>
+      <h5 class="card-title">Result Quiz Avrege Score 
       <?php
       $queryquestion = "SELECT AVG(score) FROM `quizresult`";
       $queryquestionconn = mysqli_query($conn,$queryquestion);
@@ -513,7 +473,6 @@ if(!isset($_SESSION['id_user'])){
         </div>
         <div class="ps-3">
           <h6><?= $row['AVG(score)']?></h6>
-          <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
         </div>
       </div>
@@ -536,7 +495,7 @@ if(!isset($_SESSION['id_user'])){
             </div>
 
             <div class="card-body pb-0">
-              <h5 class="card-title">Budget Report <span>| This Month</span></h5>
+              <h5 class="card-title">Budget Report 
 
               <div id="budgetChart" style="min-height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" class="echart" _echarts_instance_="ec_1701771019328"><div style="position: relative; width: 458px; height: 400px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas data-zr-dom-id="zr_0" width="458" height="400" style="position: absolute; left: 0px; top: 0px; width: 458px; height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div></div>
 
