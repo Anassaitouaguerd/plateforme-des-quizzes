@@ -38,7 +38,7 @@ require "../connection.php";
         </div>
     </div>
     <!-- ***** Header Area Start ***** -->
-  
+
     <?php include('./header.php')?>
     <!-- ***** Header Area End ***** -->
     <section>
@@ -62,7 +62,6 @@ require "../connection.php";
                 </div>
             </div>
         </form>
-
         <div id="contact" class="section row">
             <div class="container mt-5 row">
                 <?php  
@@ -73,11 +72,14 @@ require "../connection.php";
                     foreach($result_afficher_course as $rows){
               
                 ?>
-                <div class="cours<?php echo $rows['courseID'] ;?> col-lg-5 px-4 ">
-                    <div class="cours_header"><?php echo $rows['courseName'] ?> </div>
-                    <div class="cours_body"></div>
-                    <div class="cours_footer"><a
-                            href="cours_detail.php?id_course=<?php echo $rows['courseID'];?>">Commencer Cours</a></div>
+                <div class="cours<?php echo $rows['courseID'] ;?> col-lg-6 mb-4 ps-4 w-50">
+                    <div class="card course-card">
+                        <div class="card-title cours_header"><?php echo $rows['courseName'] ?> </div>
+                        <div class="cours_body"></div>
+                        <div class="cours_footer"><a
+                                href="cours_detail.php?id_course=<?php echo $rows['courseID'];?>">Commencer Cours</a>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -95,7 +97,7 @@ require "../connection.php";
     <script src="assets/js/imagesloaded.js"></script>
     <script src="assets/js/custom.js"></script>
     <style>
-    .cours {
+    .course-card {
         border: 1px solid #ccc;
         margin-bottom: 20px;
         border-radius: 8px;
@@ -103,7 +105,7 @@ require "../connection.php";
     }
 
     .cours_header {
-        background-color: #007bff;
+        background-color: rgb(0, 123, 255, 0.9);
         color: #fff;
         padding: 10px;
         text-align: center;

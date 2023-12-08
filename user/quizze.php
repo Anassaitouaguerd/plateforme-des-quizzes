@@ -1,4 +1,3 @@
-
 <?php
 require_once "../connection.php";
 if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']=="admin"){
@@ -42,35 +41,37 @@ if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']=="admin"){
         </div>
     </div>
 
-  </div>
-  <!-- ***** Header Area Start ***** -->
-  <?php include('./header.php')?>
-  <section>
-    
-    <div id="contact" class="contact-us section row" >
-      <?php
+    </div>
+    <!-- ***** Header Area Start ***** -->
+    <?php include('./header.php')?>
+    <section>
+
+        <div id="contact" class="contact-us section row">
+            <?php
       $select_cours = "SELECT * FROM course";
       $cours=$conn->query($select_cours);
       while($cour=$cours->fetch_assoc()){
       $id_cours=$cour["courseID"];
       ?>
-      <div class="container col-lg-5 mt-5">
-        <div class="cours">
-          <div class="cours_header"><?=$cour["courseName"]?></div>
-          <div class="cours_body coursse" style='height:160px; overflow: scroll;'><?=$cour["courseDescription"]?></div>
-          <div class="cours_footer"><a href="quizze_details.php?id_cours=<?=$id_cours?>">Commencer Quizze</a></div>
-        </div>
-      </div>
-      <?php
+            <div class="container col-lg-5 mt-5">
+                <div class="cours">
+                    <div class="cours_header"><?=$cour["courseName"]?></div>
+                    <div class="cours_body coursse" style='height:160px; overflow: scroll;'>
+                        <?=$cour["courseDescription"]?></div>
+                    <div class="cours_footer"><a href="quizze_details.php?id_cours=<?=$id_cours?>">Commencer Quizze</a>
+                    </div>
+                </div>
+            </div>
+            <?php
       }
       ?>
-    </div>
-  </section>
-  <style>
+        </div>
+    </section>
+    <style>
     .coursse::-webkit-scrollbar {
-      display: none;
+        display: none;
     }
-  </style>
+    </style>
 
 
     <!-- Scripts -->

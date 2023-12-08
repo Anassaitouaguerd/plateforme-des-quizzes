@@ -58,51 +58,57 @@ require "../connection.php";
                         </div>
                     </div>
                 </div>
+
             </div>
         </form>
-        <?php
+        <div id="contact" class="section row">
+            <div class="container mt-5 row">
+                <?php
 if (isset($_POST['searche_course']) OR isset($_POST['searche_quize'])) {
     $searching = $_POST['searching'];
     
     $SQL_SEARCHING = "SELECT * FROM course WHERE courseName LIKE '$searching%'";
     $result_searching = mysqli_query($conn, $SQL_SEARCHING);
-
+    
     if ($result_searching) { 
         if (mysqli_num_rows($result_searching) > 0) {
             foreach($result_searching as $rows){
                 ?>
-        <div id="contact<?php echo $rows['courseID']; ?>" class="section row">
-            <div class="container col-lg-5 mt-5">
-                <div class="cours">
-                    <div class="cours_header"><?php echo $rows['courseName']; ?> </div>
-                    <div class="cours_body"></div>
-                    <div class="cours_footer">
+                <div id="contact<?php echo $rows['courseID']; ?>" class="col-lg-6 mb-4 ps-4 w-50">
 
-                        <?php if(isset($_POST['searche_course'])){ ?>
-                        <a href="cours_detail.php?id_course=<?php echo $rows['courseID']; ?>">
-                            Commencer Cours
-                        </a>
-                        <?php } else if(isset($_POST['searche_quize'])){ ?>
-                        <a href="quizze_details.php?id_course=<?php echo $rows['courseID']; ?>">
-                            Commencer quizze
-                        </a>
-                        <?php }?>
+                    <div class="card course-card">
+                        <div class="card-title cours_header"><?php echo $rows['courseName']; ?> </div>
+                        <div class="cours_body"></div>
+                        <div class="cours_footer">
+
+                            <?php if(isset($_POST['searche_course'])){ ?>
+                            <a href="cours_detail.php?id_course=<?php echo $rows['courseID']; ?>">
+                                Commencer Cours
+                            </a>
+                            <?php } else if(isset($_POST['searche_quize'])){ ?>
+                            <a href="quizze_details.php?id_course=<?php echo $rows['courseID']; ?>">
+                                Commencer quizze
+                            </a>
+                            <?php }?>
+                        </div>
                     </div>
+
                 </div>
-            </div>
-        </div>
-        <?php 
+
+                <?php 
  }
         } else {
             ?>
-        <div class="container">
-            <p>Rien n'a été trouvé</p>
-        </div>
-        <?php
+                <div class="container">
+                    <p>Rien n'a été trouvé</p>
+                </div>
+                <?php
         }
     } 
 }
 ?>
+            </div>
+        </div>
 
     </section>
     <!-- Scripts -->
