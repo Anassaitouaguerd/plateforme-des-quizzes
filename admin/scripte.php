@@ -34,7 +34,7 @@ if(isset($_POST['login_submit'])){
         if( $_SESSION['roleUser']=="etudiants"){
             header('location:../user/index.php'); 
         }
-        if($user['roleUser']=="admin"){
+        if($_SESSION['roleUser']=="admin"){
 
             header('location: index.php'); 
         } 
