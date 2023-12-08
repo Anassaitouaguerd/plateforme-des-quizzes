@@ -34,7 +34,7 @@ if(isset($_POST['login_submit'])){
         $_SESSION['id_user']=$user['userID'];
 
         if($user['role']=="etudiants"){
-            header('location:../user/cours.php'); 
+            header('location:../user/index.php'); 
         }
         if($user['role']=="admin"){
 
