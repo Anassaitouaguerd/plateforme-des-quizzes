@@ -52,8 +52,6 @@ $question = "ok";
 
  ?>
 
-    <main id="main" class="main">
-
         <div class="pagetitle">
             <h1>Accueil</h1>
             <nav>
