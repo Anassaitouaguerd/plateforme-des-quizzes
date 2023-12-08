@@ -50,7 +50,6 @@ if(!isset($_SESSION['id_user'])){
 </head>
 
 <body>
-
  <?php
 $user = "ok";
 $gestion = "ok";
@@ -60,7 +59,6 @@ $question = "ok";
 
  ?>
 
-  <!-- ======= Sidebar ======= -->
 
   <main id="main" class="main">
 

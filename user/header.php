@@ -13,12 +13,14 @@
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="index.php" class="<?php if(isset($index)) echo "active" ?>">Accueil</a></li>
                         <li class="scroll-to-section"><a href="progress.php" >suivre Ã l'avance</a></li>
+
                         <li class="scroll-to-section"><a href="index.php">Services</a></li>
                         <?php
                         if (isset($_SESSION['id_user'])) {
                         ?>
                             <li class="scroll-to-section"><a href="cours.php" class="<?php if(isset($cours)) echo "active" ?>">Cours</a></li>
                             <li class="scroll-to-section"><a href="quizze.php" class="<?php if(isset($quizz)) echo "active" ?>">Quizzes</a></li>
+
                         <?php } ?>
                         <li class="scroll-to-section"><a href="index.php">Contact</a></li>
                         <?php

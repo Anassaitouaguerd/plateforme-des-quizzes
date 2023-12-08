@@ -24,6 +24,8 @@ if(isset($_POST['login_submit'])){
     extract($_POST);
     $pass_hash=MD5($password);
     $sql_search = "SELECT * FROM users WHERE email='$email' AND passwordHash='$pass_hash'";
+    
+
     $res=$conn->query($sql_search);
     if($res){
         $user=$res->fetch_assoc();
@@ -31,10 +33,11 @@ if(isset($_POST['login_submit'])){
         $_SESSION['usename']=$user['username'];
         $_SESSION['id_user']=$user['userID'];
 
-        if( $_SESSION['roleUser']=="etudiants"){
+
+        if($user['role']=="etudiants"){
             header('location:../user/index.php'); 
         }
-        if($_SESSION['roleUser']=="admin"){
+        if($user['role']=="admin"){
 
             header('location: index.php'); 
         } 

@@ -5,12 +5,11 @@ require_once "../connection.php";
 if(isset($_POST['addcours'])){
     $cours_name = $_POST['cours_name'];
     $descp_cours = $_POST['description'];
-
     $req = "INSERT INTO course (courseName,courseDescription) values ('$cours_name', '$descp_cours')";
     $result = mysqli_query($conn, $req);
     $id_cours = $conn->insert_id;
     $sql = "INSERT INTO quiz SET quizName='Quiz cours ', courseID = $id_cours, isComplete=0";
-    $result = mysqli_query($conn, $sql);
+
     if($result){
         echo "data is inserted successfully";
     }else{
@@ -100,7 +99,6 @@ $index = "ok";
 $question = "ok";
  include "header.php";
  include "aside.php";
-
  ?>
 
   <main id="main" class="main">

@@ -43,7 +43,6 @@ require '../connection.php';?>
 </head>
 
 <body>
-
 <?php
 $gestion = "ok";
 $index = "ok";

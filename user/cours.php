@@ -64,7 +64,7 @@ require "../connection.php";
             </div>
         </form>
 
-        <div id="contact" class="section row ">
+        <div id="contact" class="section row">
             <div class="container mt-5 row">
                 <?php  
           
