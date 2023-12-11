@@ -56,7 +56,7 @@ if(isset($_GET['id_cours'])){
     $cour=$cours->fetch_assoc();
     $id_quize= $cour['quizID'];  
   
-  ?>
+    ?>
     <section>
         <form method="post" action='scripte_pass_quiz.php'>
             <div id="contact" class="contact-us section">

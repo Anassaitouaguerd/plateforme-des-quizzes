@@ -30,7 +30,8 @@ mysqli_close($conn);
     <meta name="author" content="">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <title>DigiMedia - Creative SEO HTML5 Template</title>
@@ -41,45 +42,45 @@ mysqli_close($conn);
     <link rel="stylesheet" href="assets/css/animated.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-        }
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8f9fa;
+    }
 
-        .course-card {
-            margin: 20px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            transition: transform 0.3s ease-in-out;
-        }
+    .course-card {
+        margin: 20px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        transition: transform 0.3s ease-in-out;
+    }
 
-        .course-card:hover {
-            transform: scale(1.05);
-        }
+    .course-card:hover {
+        transform: scale(1.05);
+    }
 
-        .card-header {
-            background-color: #17a2b8;
-            color: #fff;
-            padding: 15px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-        }
+    .card-header {
+        background-color: #17a2b8;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
 
-        .card-body {
-            padding: 20px;
-        }
+    .card-body {
+        padding: 20px;
+    }
 
-        .logout-btn {
-            background-color: #dc3545;
-            color: #fff;
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-        }
+    .logout-btn {
+        background-color: #dc3545;
+        color: #fff;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+    }
     </style>
 </head>
 
@@ -97,24 +98,24 @@ mysqli_close($conn);
     <!-- ***** Header Area Start ***** -->
     <?php include('./header.php')?>
     <!-- ***** Header Area End ***** -->
-    
+
     <section class="container" style='padding-top:9%'>
         <div class="row ">
             <?php
             if (isset($result) && mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
             ?>
-                    <div class="col-md-4">
-                        <div class="card course-card">
-                            <div class="card-header">
-                                <?php echo $row["courseName"]; ?>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text"><?php echo $row["courseDescription"]; ?></p>
-                                <p class="card-text">Progress: <?php echo $row["progress"]; ?></p>
-                            </div>
-                        </div>
+            <div class="col-md-4">
+                <div class="card course-card">
+                    <div class="card-header">
+                        <?php echo $row["courseName"]; ?>
                     </div>
+                    <div class="card-body">
+                        <p class="card-text"><?php echo $row["courseDescription"]; ?></p>
+                        <p class="card-text">Progress: <?php echo $row["progress"]; ?></p>
+                    </div>
+                </div>
+            </div>
             <?php
                 }
             } else {
@@ -124,15 +125,14 @@ mysqli_close($conn);
         </div>
     </section>
 
-<!-- ... Your HTML code ... -->
+    <!-- ... Your HTML code ... -->
 
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/owl-carousel.js"></script>
-<script src="assets/js/animation.js"></script>
-<script src="assets/js/imagesloaded.js"></script>
-<script src="assets/js/custom.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script src="assets/js/imagesloaded.js"></script>
+    <script src="assets/js/custom.js"></script>
 </body>
 
 </html>
-

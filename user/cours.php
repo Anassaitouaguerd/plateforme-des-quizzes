@@ -39,7 +39,7 @@ require "../connection.php";
         </div>
     </div>
     <!-- ***** Header Area Start ***** -->
-  
+
     <?php include('header.php')?>
     <!-- ***** Header Area End ***** -->
     <section>
